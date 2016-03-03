@@ -5,77 +5,115 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CodesControl.View"
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="700" >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="AviableItems" 
-                 Grid.Column="1"
-                 ItemsSource="{Binding AviableCollection}"
-                 IsSynchronizedWithCurrentItem="True" Background="#FFF7E7E7" Grid.Row="1">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Bisque" 
-                            BorderThickness="1" 
-                            Margin="10">
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding UserName}" 
-                                       FontWeight="Bold"/>
-                            <TextBlock Text="{Binding UserLastName}" />
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Осталось:" />
-                                <TextBlock Text="{Binding UserLogin}"
-                                           FontWeight="Bold" 
-                                           Margin="10,0"/>
-                                <TextBlock Text="шт" />
+
+        <Border >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Статус кода"  Foreground="#333333" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14.667" Margin="10,0,0,0"/>
+
+                <ListView x:Name="CodesTypes" 
+                 ItemsSource="{Binding CodesType}" 
+                  Grid.Row="1" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,10,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Border Padding="10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Title}" />
+                                        <TextBlock Text="{Binding Count}"/>
+                                    </StackPanel>
+                                </Border>
                             </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>            
+        </Border>
 
 
+        <Border Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="#cccccc">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ListView x:Name="AviableItems" 
+                 ItemsSource="{Binding AviableCollection}"
+                 IsSynchronizedWithCurrentItem="True"
+                 Grid.Row="1" BorderBrush="{x:Null}" Background="{x:Null}" Margin="10,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="5">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding UserLastName}" 
+                                                   Margin="0,0,5,0"/>
+                                        <TextBlock Text="{Binding UserName}" 
+                                                    Margin="0,0,5,0"/>
+                                        <TextBlock Text="{Binding UserParentName}" 
+                                                   Margin="0,0,5,0"/>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Orientation="Horizontal" Margin="0,10">
+                                        <TextBlock Text="Код:" Margin="10,0"/>
+                                        <TextBlock Text="{Binding UserCode}"/>
+                                        <TextBlock Text="шт" />
+                                    </StackPanel>
 
-        <ListView x:Name="CodesTypes" 
-                 Background="#FFEAF8F9"
-                 ItemsSource="{Binding CodesType}" Grid.Row="1">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Title}" />
-                        <TextBlock Text="{Binding Count}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Логин:" Margin="10,0"/>
+                                        <TextBlock Text="{Binding UserCode}"/>
+                                        <TextBlock Text="Email:" Margin="10,0"/>
+                                        <TextBlock Text="{Binding UserEmail}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>            
+        </Border>
 
 
-        <ContentControl Grid.Column="2" Content="{Binding AviableCollection}" Grid.RowSpan="2">
-            <ContentControl.ContentTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Bisque"
-                            BorderThickness="1" 
-                            Margin="10">
-                        <StackPanel Margin="10">
-                            <TextBlock Text="Название:"/>
-                            <TextBox Text="{Binding UserName, Mode=OneWay}"
+        <Border Grid.Column="2" BorderThickness="1,0,0,0" BorderBrush="#cccccc">
+            <Grid>
+                <ContentControl Content="{Binding AviableCollection}" >
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding UserLastName}" 
+                                                    Margin="0,0,5,0" FontSize="18"/>
+                                    <TextBlock Text="{Binding UserName}" 
+                                                    Margin="0,0,5,0" FontSize="18"/>
+                                    <TextBlock Text="{Binding UserParentName}" 
+                                                    Margin="0,0,5,0" FontSize="18"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Название:"/>
+                                    <TextBox Text="{Binding UserName, Mode=OneWay}"
                                      Margin="0,0,0,10"/>
 
-                            <TextBlock Text="Автор:"/>
-                            <TextBox Text="{Binding UserLastName, Mode=OneWay}" 
+                                    <TextBlock Text="Автор:"/>
+                                    <TextBox Text="{Binding UserLastName, Mode=OneWay}" 
                                      Margin="0,0,0,10"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ContentControl.ContentTemplate>
-        </ContentControl>
-        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Статус кода" Background="White" Foreground="#FF292929" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14.667"/>
+                                </StackPanel>
+                             </StackPanel>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </Grid>
+        </Border>
+        
     </Grid>
 </UserControl>
