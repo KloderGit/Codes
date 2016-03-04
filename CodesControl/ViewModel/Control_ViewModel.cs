@@ -144,7 +144,7 @@ namespace CodesControl.ViewModel
         {
             get
             {
-                var group = ItemsArray.GroupBy(g=>g.UserEducationType);
+                var group = ItemsArray.GroupBy(g=>g.EducationType);
                 var list = from type in @group select new { Title = type.Key, Count = type.ToList().Count };
                 return list;
             }

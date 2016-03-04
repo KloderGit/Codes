@@ -28,7 +28,7 @@ namespace CodesControl.ViewModel
         public string UserPhone { get { return ItemModel.User.Phone; } }
         public string UserSkype { get { return ItemModel.User.Skype; } }
         // Поля для изменения
-        public string UserEducationType
+        public string EducationType
         {
             get
             {
@@ -43,12 +43,12 @@ namespace CodesControl.ViewModel
                 if (value != ItemModel.User.EducationType)
                 {
                     ItemModel.User.EducationType = value; ItemModel.Code.EducationType = value;
-                    OnPropertyChanged("UserEducationType");
+                    OnPropertyChanged("EducationType");
                 }
             }
         }
 
-        public string UserCode
+        public string Code
         {
             get
             {
@@ -59,7 +59,7 @@ namespace CodesControl.ViewModel
                 if (value != ItemModel.User.Code)
                 {
                     ItemModel.User.Code = value; ItemModel.Code.Code = value;
-                    OnPropertyChanged("UserCode");
+                    OnPropertyChanged("Code");
                 }
             }
         }
@@ -67,38 +67,6 @@ namespace CodesControl.ViewModel
         //Поля для чтения класса кодов
         public Int32 CodeId { get { return ItemModel.Code.Id; } }
         public bool CodeActive { get { return ItemModel.Code.Active; } }
-
-        public string CodeEducationType
-        {
-            get
-            {
-                return ItemModel.Code.EducationType;
-            }
-            set
-            {
-                if (value != ItemModel.Code.EducationType)
-                {
-                    ItemModel.Code.EducationType = value; ItemModel.User.EducationType = value;
-                    OnPropertyChanged("CodeEducationType");
-                }
-            }
-        }
-
-        public string CodeCode
-        {
-            get
-            {
-                return ItemModel.Code.Code;
-            }
-            set
-            {
-                if (value != ItemModel.Code.Code)
-                {
-                    ItemModel.Code.Code = value; ItemModel.User.Code = value;
-                    OnPropertyChanged("CodeCode");
-                }
-            }
-        }
 
         public DateTime CodeExpirationDate
         {
