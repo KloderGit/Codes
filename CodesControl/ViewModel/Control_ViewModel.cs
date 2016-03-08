@@ -18,6 +18,15 @@ namespace CodesControl.ViewModel
         private ObservableCollection<Model.EducationType> educationTypesArray;
         private ICollectionView educationTypes;
 
+        private string filterCollection;
+
+        public string FilterCollection {
+            get { return this.filterCollection; }
+            set 
+            {
+                filterCollection = value;
+            }
+        }
 
         public Control_ViewModel()
         {
@@ -29,9 +38,7 @@ namespace CodesControl.ViewModel
 
             educationTypesArray = new ObservableCollection<Model.EducationType>(CodesTypePrepare());
             educationTypes = new CollectionViewSource { Source = educationTypesArray }.View;
-
-            //educationTypes.CurrentChanged += AviableCollectionPrepare;
-            educationTypes.CurrentChanged += delegate { allItems.Filter = FilterForAviableCollection; };
+            educationTypes.CurrentChanged += delegate { allItems.Filter = FilterForAviableCollection; this.filterCollection = ""; };
             
         }
 
@@ -65,17 +72,23 @@ namespace CodesControl.ViewModel
                 return list.ToList();
         }
 
-        private void AviableCollectionPrepare(object s, EventArgs e)
-        {
-            allItems.Filter = FilterForAviableCollection;
-        }
-
         private bool FilterForAviableCollection(object item)
         {
             Model.EducationType type = (Model.EducationType)educationTypes.CurrentItem;
             bool result = false;
             ViewModel.ItemUserCodes_ViewModel i = item as ViewModel.ItemUserCodes_ViewModel;
-            if (i.EducationType.Equals(type.Title)) { result = true; }
+
+            string i1 = "";
+            string i2 = ""; 
+
+            if ( !String.IsNullOrEmpty(this.filterCollection) )
+            {
+                i1 = (i.UserName + i.UserLastName).ToUpper();
+                i2 = this.filterCollection.ToUpper();
+            }
+
+            if (i.EducationType.Equals(type.Title) && i1.Contains(i2) ) { result = true; }
+
             return result;
         }
 

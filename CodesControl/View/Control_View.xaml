@@ -50,6 +50,7 @@
                     <RowDefinition Height="17*"/>
                     <RowDefinition Height="19*"/>
                 </Grid.RowDefinitions>
+
                 <ListView x:Name="AviableItems" 
                  ItemsSource="{Binding AviableCollection}"
                  IsSynchronizedWithCurrentItem="True"
@@ -115,6 +116,12 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Border BorderThickness="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <TextBlock Text="Фильтр" VerticalAlignment="Center"/>
+                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="25" Text="{Binding FilterCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </Border>
             </Grid>
         </Border>
 
@@ -124,7 +131,7 @@
                 <ContentControl Content="{Binding AviableCollection}" >
                     <ContentControl.ContentTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="10">
+                            <StackPanel Margin="10" HorizontalAlignment="Left">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
                                     <Ellipse Width="50" Height="50" Stroke="#FF595959" Margin="0,0,15,0"/>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
