@@ -9,6 +9,7 @@ namespace CodesControl.ViewModel
     public class ItemUserCodes_ViewModel : ViewModelBase
     {
         Model.ItemUserCodes_Model ItemModel;
+        Model.ItemUserCodes_Model buckupModel;
 
         // Коструктор
         public ItemUserCodes_ViewModel(Model.ItemUserCodes_Model model)
@@ -42,6 +43,7 @@ namespace CodesControl.ViewModel
             {
                 if (value != ItemModel.User.EducationType)
                 {
+                    buckupItem();
                     ItemModel.User.EducationType = value; ItemModel.Code.EducationType = value;
                     OnPropertyChanged("EducationType");
                 }
@@ -58,6 +60,7 @@ namespace CodesControl.ViewModel
             {
                 if (value != ItemModel.User.Code)
                 {
+                    buckupItem();
                     ItemModel.User.Code = value; ItemModel.Code.Code = value;
                     OnPropertyChanged("Code");
                 }
@@ -78,9 +81,34 @@ namespace CodesControl.ViewModel
             {
                 if (value != ItemModel.Code.ExpirationDate)
                 {
+                    buckupItem();
                     ItemModel.Code.ExpirationDate = value;
                     OnPropertyChanged("CodeExpirationDate");
                 }
+            }
+        }
+
+        public bool BuckUpAviable
+        {
+            get
+            {
+                bool result = false;
+                if (this.buckupModel == null)
+                {
+                    result = true;
+                }
+                return result;
+            }
+        }
+
+        private void buckupItem()
+        {
+            if (this.buckupModel == null)
+            {
+                var oldCode = (Model.Codes)this.ItemModel.Code.Clone();
+                var oldUser = (Model.Users)this.ItemModel.User.Clone();
+
+                buckupModel = new Model.ItemUserCodes_Model(oldUser, oldCode);
             }
         }
 

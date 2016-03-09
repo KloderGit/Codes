@@ -63,10 +63,8 @@ namespace CodesControl.ViewModel
 
         private bool OneFilter(object item)
         {
-            bool result = false;
             ViewModel.ItemUserCodes_ViewModel i = item as ViewModel.ItemUserCodes_ViewModel;
-            if (i.EducationType.Equals("Заочник")) { result = true; }
-            return result;            
+            return i.BuckUpAviable;
         }
 
         private List<Model.EducationType> CodesTypePrepare()

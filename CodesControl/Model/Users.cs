@@ -19,5 +19,9 @@ namespace CodesControl.Model
         public string Code { get; set; }
         public string Skype { get; set; }
 
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

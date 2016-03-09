@@ -60,7 +60,11 @@
                             <Border Padding="5" Margin="0,5">
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Ellipse Width="35" Height="35" Fill="{x:Null}" Stroke="#FF595959" Margin="0,0,10,0" />
+                                        <Grid Margin="0,0,12,0">
+                                            <Image Source="..\images\User-mini.png" Width="42" Height="42" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Ellipse Width="35" Height="35" Fill="{x:Null}" Stroke="#FF595959" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Grid>
+
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="{Binding UserLastName}" 
@@ -139,10 +143,14 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             Margin="0,0,0,30">
-                                    <Ellipse Width="50" 
+                                    <Grid>
+                                        <Image Source="..\images\User-mini.png" HorizontalAlignment="Center" Width="65" Height="65"/>
+                                        <Ellipse Width="50" 
                                              Height="50" 
                                              Stroke="#FF595959" 
-                                             Margin="0,0,15,0"/>
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+
                                     <StackPanel Orientation="Horizontal" 
                                                 VerticalAlignment="Center">
                                         <TextBlock Text="{Binding UserLastName}" 

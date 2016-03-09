@@ -14,5 +14,10 @@ namespace CodesControl.Model
         public Int32 UserId { get; set; }
         public string EducationType { get; set; }
         public DateTime ExpirationDate { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }
