@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace CodesControl.ViewModel
 {
-    public class Control_ViewModel
+    public class Control_ViewModel : ViewModelBase
     {
 
         private ObservableCollection<ViewModel.ItemUserCodes_ViewModel> itemsArray;
@@ -24,7 +24,9 @@ namespace CodesControl.ViewModel
             get { return this.filterCollection; }
             set 
             {
-                filterCollection = value;
+                this.filterCollection = value;
+                OnPropertyChanged("FilterCollection");
+                allItems.Filter = FilterForAviableCollection;
             }
         }
 
@@ -38,8 +40,10 @@ namespace CodesControl.ViewModel
 
             educationTypesArray = new ObservableCollection<Model.EducationType>(CodesTypePrepare());
             educationTypes = new CollectionViewSource { Source = educationTypesArray }.View;
-            educationTypes.CurrentChanged += delegate { allItems.Filter = FilterForAviableCollection; this.filterCollection = ""; };
-            
+            educationTypes.CurrentChanged += delegate {
+                                                        this.FilterCollection = null;
+                                                        allItems.Filter = FilterForAviableCollection;
+                                                      };            
         }
 
         public ICollectionView AviableCollection
@@ -67,31 +71,47 @@ namespace CodesControl.ViewModel
 
         private List<Model.EducationType> CodesTypePrepare()
         {
-                var group = itemsArray.GroupBy(g=>g.EducationType);
-                var list = from type in @group select new Model.EducationType(type.Key, type.ToList().Count);
-                return list.ToList();
+            var listTypes = new List<Model.EducationType>();
+            listTypes.Add(new Model.EducationType("Все статусы", this.itemsArray.Count));
+
+            var group = itemsArray.GroupBy(g=>g.EducationType);
+            var list = from type in @group select new Model.EducationType(type.Key, type.ToList().Count);
+            listTypes.AddRange(list);
+
+            return listTypes;
         }
 
-        private bool FilterForAviableCollection(object item)
+        private bool FilterForAviableCollection(object _item)
         {
+            ViewModel.ItemUserCodes_ViewModel item = _item as ViewModel.ItemUserCodes_ViewModel;
             Model.EducationType type = (Model.EducationType)educationTypes.CurrentItem;
-            bool result = false;
-            ViewModel.ItemUserCodes_ViewModel i = item as ViewModel.ItemUserCodes_ViewModel;
+            string i1, i2;
 
-            string i1 = "";
-            string i2 = ""; 
+            bool typeCorrect = true;
+            bool stringCorrect = true;
 
-            if ( !String.IsNullOrEmpty(this.filterCollection) )
+            if (!String.IsNullOrEmpty(this.filterCollection))
             {
-                i1 = (i.UserName + i.UserLastName).ToUpper();
+                i1 = (item.UserName + item.UserLastName + item.UserParentName + item.Code).ToUpper();
                 i2 = this.filterCollection.ToUpper();
+
+                if ( !i1.Contains(i2) ) { stringCorrect = false; }
             }
 
-            if (i.EducationType.Equals(type.Title) && i1.Contains(i2) ) { result = true; }
+            if (type != null)
+            {
+                if (type.Title == "Все статусы")
+                {
+                    typeCorrect = true;
+                }
+                else
+                {
+                    if (!item.EducationType.Equals(type.Title)) { typeCorrect = false; }
+                }                
+            }
 
-            return result;
+            return typeCorrect & stringCorrect;
         }
-
 
     }
 }
