@@ -14,6 +14,8 @@ namespace CodesControl
 
         public SomeData()
         {
+            System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("ru-RU");
+
             ItemsArray = new List<ViewModel.ItemUserCodes_ViewModel>();
 
             Model.Users _user = new Model.Users();

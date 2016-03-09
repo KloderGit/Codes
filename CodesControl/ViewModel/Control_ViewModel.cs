@@ -83,12 +83,11 @@ namespace CodesControl.ViewModel
 
         private bool FilterForAviableCollection(object _item)
         {
-            ViewModel.ItemUserCodes_ViewModel item = _item as ViewModel.ItemUserCodes_ViewModel;
-            Model.EducationType type = (Model.EducationType)educationTypes.CurrentItem;
-            string i1, i2;
+            var item = _item as ViewModel.ItemUserCodes_ViewModel;
+            var type = (Model.EducationType)educationTypes.CurrentItem;
 
-            bool typeCorrect = true;
-            bool stringCorrect = true;
+            string i1, i2;
+            bool typeCorrect = true, stringCorrect = true;
 
             if (!String.IsNullOrEmpty(this.filterCollection))
             {

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CodesControl.View"
-             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="1000">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -47,8 +47,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="17*"/>
-                    <RowDefinition Height="19*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="160"/>
                 </Grid.RowDefinitions>
 
                 <ListView x:Name="AviableItems" 
@@ -73,8 +73,10 @@
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="Код:" Margin="0,0,10,0"/>
                                                 <TextBlock Text="{Binding Code}"/>
-                                                <TextBlock Text="Срок:" Margin="10,0"/>
-                                                <TextBlock Text="{Binding CodeExpirationDate}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Срок:" />
+                                                <TextBlock Text="{Binding CodeExpirationDate, StringFormat=dd MMMM yyyy}" Margin="10,0,0,0"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -87,7 +89,7 @@
                 <ListView x:Name="DifferentItems" 
                  ItemsSource="{Binding DifferentCollection}"
                  IsSynchronizedWithCurrentItem="True"
-                 Grid.Row="2" BorderBrush="{x:Null}" Background="{x:Null}" Margin="10,0,10,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                 Grid.Row="2" BorderBrush="{x:Null}" Background="{x:Null}" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="5" Margin="0,5">
@@ -116,10 +118,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Border BorderThickness="1">
+                <Border >
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                        <TextBlock Text="Фильтр" VerticalAlignment="Center"/>
-                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="25" Text="{Binding FilterCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="..\images\find-icon.png" Width="25" Height="25"/>
+                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="25" Text="{Binding FilterCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" FontSize="16" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Border>
             </Grid>
@@ -131,61 +133,83 @@
                 <ContentControl Content="{Binding AviableCollection}" >
                     <ContentControl.ContentTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="10" HorizontalAlignment="Left">
-                                <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
-                                    <Ellipse Width="50" Height="50" Stroke="#FF595959" Margin="0,0,15,0"/>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                            <StackPanel Margin="10" 
+                                        HorizontalAlignment="Left">
+
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,0,0,30">
+                                    <Ellipse Width="50" 
+                                             Height="50" 
+                                             Stroke="#FF595959" 
+                                             Margin="0,0,15,0"/>
+                                    <StackPanel Orientation="Horizontal" 
+                                                VerticalAlignment="Center">
                                         <TextBlock Text="{Binding UserLastName}" 
-                                                    Margin="0,0,5,0" FontSize="24" Foreground="#FF008A91" FontWeight="Light"/>
-                                        <TextBlock Text="{Binding UserName}" 
-                                                    Margin="0,0,5,0" FontSize="24" Foreground="#FF008A91" FontWeight="Light"/>
-                                        <TextBlock Text="{Binding UserParentName}" 
-                                                    Margin="0,0,5,0" FontSize="24" Foreground="#FF008A91" FontWeight="Light"/>
+                                                   Margin="0,0,5,0"
+                                                   FontSize="24" 
+                                                   Foreground="#FF008A91" 
+                                                   FontWeight="Light"/>
+                                        <TextBlock Text="{Binding UserName}"
+                                                   Margin="0,0,5,0" 
+                                                   FontSize="24" 
+                                                   Foreground="#FF008A91" 
+                                                   FontWeight="Light"/>
+                                        <TextBlock Text="{Binding UserParentName}"
+                                                   Margin="0,0,5,0" 
+                                                   FontSize="24"
+                                                   Foreground="#FF008A91" 
+                                                   FontWeight="Light"/>
                                     </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Vertical" Margin="65,0,0,0">
+
+                                <StackPanel Orientation="Vertical" 
+                                            Margin="65,0,0,0">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Email:" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Email:" Margin="0,0,10,0" FontSize="16"/>
                                         <TextBlock Text="{Binding UserEmail, Mode=OneWay}"
-                                     Margin="0,0,0,10" TextTrimming="CharacterEllipsis"/>
+                                                   Margin="0,0,0,10"
+                                                   TextTrimming="CharacterEllipsis" FontSize="16"/>
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Login:" Margin="0,0,10,0"/>
-                                        <TextBlock Text="{Binding UserLogin, Mode=OneWay}" 
-                                     Margin="0,0,0,10"/>
+                                        <TextBlock Text="Login:" Margin="0,0,10,0" FontSize="16"/>
+                                        <TextBlock Text="{Binding UserLogin, Mode=OneWay}"
+                                                   Margin="0,0,0,10" FontSize="16"/>
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Телефон:" Margin="0,0,10,0"/>
-                                        <TextBlock Text="{Binding UserPhone, Mode=OneWay}" 
-                                     Margin="0,0,0,10"/>
+                                        <TextBlock Text="Телефон:" Margin="0,0,10,0" FontSize="16"/>
+                                        <TextBlock Text="{Binding UserPhone, Mode=OneWay}"
+                                                   Margin="0,0,0,10" FontSize="16"/>
                                     </StackPanel>
 
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Skype:" Margin="0,0,10,0"/>
-                                        <TextBlock Text="{Binding UserSkype, Mode=OneWay}" 
-                                     Margin="0,0,0,10"/>
+                                        <TextBlock Text="Skype:" Margin="0,0,10,0" FontSize="16"/>
+                                        <TextBlock Text="{Binding UserSkype, Mode=OneWay}"
+                                                   Margin="0,0,0,10" FontSize="16"/>
                                     </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Тип:" Margin="0,0,10,0"/>
-                                        <TextBox Text="{Binding EducationType}" Width="150"
-                                     HorizontalAlignment="Left"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                        <TextBlock Text="Тип:" Margin="0,0,10,0" FontSize="16"/>
+                                        <TextBox Text="{Binding EducationType}" 
+                                                 Width="200"
+                                                 HorizontalAlignment="Left" FontSize="16" Margin="10,0,0,0"/>
                                     </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Код:" Margin="0,10,10,0"/>
-                                        <TextBox Text="{Binding Code}" 
-                                     HorizontalAlignment="Left" Width="150"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                        <TextBlock Text="Код:" FontSize="16" VerticalAlignment="Center"/>
+                                        <TextBox Text="{Binding Code}"
+                                                 HorizontalAlignment="Stretch" 
+                                                 Width="150" FontSize="16" VerticalAlignment="Center" Margin="20,0,0,0"/>
                                     </StackPanel>
 
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Срок действия:" Margin="0,0,10,0" />
-                                        <DatePicker SelectedDate="{Binding CodeExpirationDate}" Width="150" HorizontalAlignment="Left"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                        <TextBlock Text="Срок действия:" Margin="0,0,10,0" FontSize="16"/>
+                                        <DatePicker SelectedDate="{Binding CodeExpirationDate}" 
+                                                    Width="150"  FontSize="16"
+                                                    HorizontalAlignment="Left"/>
                                     </StackPanel>
-
-
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
