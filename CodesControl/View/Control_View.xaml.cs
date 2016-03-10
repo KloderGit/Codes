@@ -12,10 +12,6 @@ namespace CodesControl.View
         public Control_View()
         {
             InitializeComponent();
-            var requestCulture = System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU");
-            System.Threading.Thread.CurrentThread.CurrentCulture = requestCulture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = requestCulture;
-
         }
     }
 }

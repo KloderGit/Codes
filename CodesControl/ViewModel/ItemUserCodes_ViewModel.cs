@@ -16,8 +16,6 @@ namespace CodesControl.ViewModel
             this.ItemModel = model;
         }
 
-
-
         //Поля для чтения класса пользователя
         public Int32 UserId { get { return ItemModel.User.ID; } }
         public string UserName { get { return ItemModel.User.Name; } }

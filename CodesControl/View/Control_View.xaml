@@ -22,6 +22,7 @@
         <ListView x:Name="CodesTypes" 
                   IsSynchronizedWithCurrentItem ="True"
                   ItemsSource="{Binding CodesType}" 
+                  SelectionMode="Single"
                   Grid.Row="1" Grid.RowSpan="2" BorderBrush="{x:Null}" 
                   Background="{x:Null}" Margin="0,0,10,0">
             <ListView.ItemTemplate>
@@ -52,7 +53,8 @@
         <ListView x:Name="AviableItems" 
                  ItemsSource="{Binding AviableCollection}"
                  IsSynchronizedWithCurrentItem="True"
-                 Grid.Row="1" Grid.Column="1" BorderBrush="{x:Null}" Background="{x:Null}" Margin="10,0,10,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                 SelectionMode="Single"
+                 Grid.Row="1" Grid.Column="1" BorderBrush="{x:Null}" Background="{x:Null}" Margin="10,0,10,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="5" Margin="0,5">
@@ -95,8 +97,7 @@
             <ContentControl.ContentTemplate>
                 <DataTemplate>
 
-                    <StackPanel Margin="10" 
-                                        HorizontalAlignment="Left">
+                    <StackPanel Margin="10" HorizontalAlignment="Left">
 
                         <StackPanel Orientation="Horizontal"
                                             Margin="0,0,0,30">
@@ -128,54 +129,61 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" 
-                                            Margin="65,0,0,0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Email:" Margin="0,0,10,0" FontSize="16"/>
-                                <TextBlock Text="{Binding UserEmail, Mode=OneWay}"
-                                                   Margin="0,0,0,10"
-                                                   TextTrimming="CharacterEllipsis" FontSize="16"/>
-                            </StackPanel>
+                        <Grid  Height="278" Width="313" Margin="65,0,0,0" HorizontalAlignment="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="46"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="118*"/>
+                                <ColumnDefinition Width="153*"/>
+                            </Grid.ColumnDefinitions>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Login:" Margin="0,0,10,0" FontSize="16"/>
-                                <TextBlock Text="{Binding UserLogin, Mode=OneWay}"
-                                                   Margin="0,0,0,10" FontSize="16"/>
-                            </StackPanel>
+                            <TextBlock Text="Email:" Margin="0" FontSize="16" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="1" Text="{Binding UserEmail, Mode=OneWay}"             
+                        			TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center" />
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Телефон:" Margin="0,0,10,0" FontSize="16"/>
-                                <TextBlock Text="{Binding UserPhone, Mode=OneWay}"
-                                                   Margin="0,0,0,10" FontSize="16"/>
-                            </StackPanel>
+                            <TextBlock Text="Login:" Margin="0" FontSize="16" Grid.Row="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding UserLogin, Mode=OneWay}"
+                                       Grid.Column="1"
+                                       Grid.Row="1"
+                        			Margin="0" FontSize="16" VerticalAlignment="Center"/>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Skype:" Margin="0,0,10,0" FontSize="16"/>
-                                <TextBlock Text="{Binding UserSkype, Mode=OneWay}"
-                                                   Margin="0,0,0,10" FontSize="16"/>
-                            </StackPanel>
+                            <TextBlock Text="Телефон:" Margin="0" FontSize="16"
+                                       Grid.Row="2" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding UserPhone, Mode=OneWay}"
+                                       Grid.Row="2" Grid.Column="1"
+                        			Margin="0" FontSize="16" VerticalAlignment="Center"/>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                <TextBlock Text="Тип:" Margin="0,0,10,0" FontSize="16"/>
-                                <TextBox Text="{Binding EducationType, UpdateSourceTrigger=PropertyChanged}" 
-                                                 Width="200"
-                                                 HorizontalAlignment="Left" FontSize="16" Margin="10,0,0,0"/>
-                            </StackPanel>
+                            <TextBlock Text="Skype:" Margin="0" FontSize="16"
+                                       Grid.Row="3" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding UserSkype, Mode=OneWay}"
+                        			Margin="0" FontSize="16"
+                                       Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                <TextBlock Text="Код:" FontSize="16" VerticalAlignment="Center"/>
-                                <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"
-                                                 HorizontalAlignment="Stretch" 
-                                                 Width="150" FontSize="16" VerticalAlignment="Center" Margin="20,0,0,0"/>
-                            </StackPanel>
+                            <TextBlock Text="Тип:" Margin="0" FontSize="16"
+                                       Grid.Row="4" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding EducationType, UpdateSourceTrigger=PropertyChanged}" 
+                        			Grid.Row="4" Grid.Column="1" FontSize="16" VerticalAlignment="Center" />
 
-                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                <TextBlock Text="Срок действия:" Margin="0,0,10,0" FontSize="16"/>
-                                <DatePicker SelectedDate="{Binding CodeExpirationDate, UpdateSourceTrigger=PropertyChanged}" 
-                                                    Width="150"  FontSize="16"
-                                                    HorizontalAlignment="Left"/>
-                            </StackPanel>
-                        </StackPanel>
+                            <TextBlock Text="Код:" FontSize="16" VerticalAlignment="Center"
+                                       Grid.Row="5"/>
+                            <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"
+                                     Grid.Row="5" Grid.Column="1"
+                                     FontSize="16" VerticalAlignment="Center" />
+
+                            <TextBlock Text="Срок действия:" Margin="0" FontSize="16"
+                                       Grid.Row="6" VerticalAlignment="Center"/>
+                            <DatePicker SelectedDate="{Binding CodeExpirationDate, UpdateSourceTrigger=PropertyChanged}" 
+                                        Grid.Row="6" Grid.Column="1"  FontSize="16"
+                        			HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="0"/>
+
+                        </Grid>
                     </StackPanel>
                 </DataTemplate>
             </ContentControl.ContentTemplate>
@@ -183,13 +191,12 @@
 
 
         <Label Content="[ Не сохраненные изменения ]"
-               Grid.Column="1" Grid.Row="2" Margin="22,-7,0,0" Width="180" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Foreground="#FF515151" Panel.ZIndex="1" />
+               Grid.Column="1" Grid.Row="2" Margin="22,-7,0,0" Width="180" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Foreground="#FF9B9B9B" Panel.ZIndex="1" />
 
-        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="0,1,0,0" BorderBrush="#FFD1D1D1" Margin="7,7,0,0"/>
+        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="0,1,0,0" BorderBrush="#FFD1D1D1" Margin="7,7,0,0" />
 
         <ListView x:Name="DifferentItems" 
                    ItemsSource="{Binding DifferentCollection}"
-                   IsSynchronizedWithCurrentItem="True"
                    Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
                    BorderBrush="{x:Null}" Background="{x:Null}" Margin="10" 
                   MaxHeight="130"
