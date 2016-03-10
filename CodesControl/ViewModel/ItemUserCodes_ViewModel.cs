@@ -9,7 +9,6 @@ namespace CodesControl.ViewModel
     public class ItemUserCodes_ViewModel : ViewModelBase
     {
         Model.ItemUserCodes_Model ItemModel;
-        Model.ItemUserCodes_Model buckupModel;
 
         // Коструктор
         public ItemUserCodes_ViewModel(Model.ItemUserCodes_Model model)
@@ -88,27 +87,13 @@ namespace CodesControl.ViewModel
             }
         }
 
-        public bool BuckUpAviable
-        {
-            get
-            {
-                bool result = false;
-                if (this.buckupModel == null)
-                {
-                    result = true;
-                }
-                return result;
-            }
-        }
+        public bool BuckUpAviable { get { return ItemModel.buckupAviable; } }
 
         private void buckupItem()
         {
-            if (this.buckupModel == null)
+            if ( !ItemModel.buckupAviable )
             {
-                var oldCode = (Model.Codes)this.ItemModel.Code.Clone();
-                var oldUser = (Model.Users)this.ItemModel.User.Clone();
-
-                buckupModel = new Model.ItemUserCodes_Model(oldUser, oldCode);
+                ItemModel.selfBuckup();
             }
         }
 

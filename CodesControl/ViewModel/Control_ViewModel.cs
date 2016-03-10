@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Data;
@@ -20,12 +19,12 @@ namespace CodesControl.ViewModel
 
         private string filterCollection;
 
-        public string FilterCollection {
+        public string StringForFilterCollection {
             get { return this.filterCollection; }
             set 
             {
                 this.filterCollection = value;
-                OnPropertyChanged("FilterCollection");
+                OnPropertyChanged("StringForFilterCollection");
                 allItems.Filter = FilterForAviableCollection;
             }
         }
@@ -34,6 +33,7 @@ namespace CodesControl.ViewModel
         {
             itemsArray = new ObservableCollection<ViewModel.ItemUserCodes_ViewModel>(new SomeData().GetItems());
             allItems = new CollectionViewSource { Source = itemsArray }.View;
+            allItems.CurrentChanged += delegate { changeItems.Refresh(); }; 
 
             changeItems = new CollectionViewSource { Source = itemsArray }.View;
             changeItems.Filter = OneFilter;
@@ -41,7 +41,7 @@ namespace CodesControl.ViewModel
             educationTypesArray = new ObservableCollection<Model.EducationType>(CodesTypePrepare());
             educationTypes = new CollectionViewSource { Source = educationTypesArray }.View;
             educationTypes.CurrentChanged += delegate {
-                                                        this.FilterCollection = null;
+                                                        this.StringForFilterCollection = null;
                                                         allItems.Filter = FilterForAviableCollection;
                                                       };            
         }
