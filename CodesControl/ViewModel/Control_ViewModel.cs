@@ -17,8 +17,6 @@ namespace CodesControl.ViewModel
         private ObservableCollection<Model.EducationType> educationTypesArray;
         private ICollectionView educationTypes;
 
-        private ViewModel.ItemUserCodes_ViewModel _currentItem;
-
         private string filterCollection;
 
         public string StringForFilterCollection {
@@ -31,20 +29,18 @@ namespace CodesControl.ViewModel
             }
         }
 
-        public ViewModel.ItemUserCodes_ViewModel CurrentItem
-        {
-            get { return this._currentItem; }
-            set
-            {
-                this._currentItem = value;
-                Console.WriteLine(_currentItem.CodeId);
-                OnPropertyChanged("CurrentItem");
-            }
-        }
-
         public Control_ViewModel()
         {
             itemsArray = new ObservableCollection<ViewModel.ItemUserCodes_ViewModel>(new SomeData().GetItems());
+
+            educationTypesArray = new ObservableCollection<Model.EducationType>(CodesTypePrepare());
+            educationTypes = new CollectionViewSource { Source = educationTypesArray }.View;
+            educationTypes.CurrentChanged += delegate {
+                Console.WriteLine("Смена Статусного списка");
+                this.StringForFilterCollection = null;
+                //allItems.Filter = FilterForAviableCollection;
+            };
+
             allItems = new CollectionViewSource { Source = itemsArray }.View;
             allItems.CurrentChanged += delegate {
                 changeItems.Refresh();
@@ -58,13 +54,7 @@ namespace CodesControl.ViewModel
                 Console.WriteLine("Смена Измененного списка");
             };
 
-            educationTypesArray = new ObservableCollection<Model.EducationType>(CodesTypePrepare());
-            educationTypes = new CollectionViewSource { Source = educationTypesArray }.View;
-            educationTypes.CurrentChanged += delegate {
-                Console.WriteLine("Смена Статусного списка");
-                this.StringForFilterCollection = null;
-                allItems.Filter = FilterForAviableCollection;
-            };            
+           
         }
 
         public ICollectionView AviableCollection
