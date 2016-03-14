@@ -10,6 +10,10 @@ namespace CodesControl.ViewModel
     {
         Model.ItemUserCodes_Model ItemModel;
 
+   //     public delegate void MethodContainer();
+
+  //      public event MethodContainer ObjectPropertyChanged;
+
         // Коструктор
         public ItemUserCodes_ViewModel(Model.ItemUserCodes_Model model)
         {
@@ -25,6 +29,7 @@ namespace CodesControl.ViewModel
         public string UserLogin { get { return ItemModel.User.Login; } }
         public string UserPhone { get { return ItemModel.User.Phone; } }
         public string UserSkype { get { return ItemModel.User.Skype; } }
+
         // Поля для изменения
         public string EducationType
         {
@@ -59,6 +64,7 @@ namespace CodesControl.ViewModel
                 {
                     buckupItem();
                     ItemModel.User.Code = value; ItemModel.Code.Code = value;
+             //       ObjectPropertyChanged();
                     OnPropertyChanged("Code");
                 }
             }
@@ -94,7 +100,6 @@ namespace CodesControl.ViewModel
                 ItemModel.selfBuckup();
             }
         }
-
 
     }
 }

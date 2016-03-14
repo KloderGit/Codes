@@ -10,14 +10,16 @@ namespace CodesControl.ViewModel
     public class Control_ViewModel : ViewModelBase
     {
 
-        private ObservableCollection<ViewModel.ItemUserCodes_ViewModel> itemsArray;
+        private Clsses.Collection.ObserverableCollection_WithNotifyObjectChange<ViewModel.ItemUserCodes_ViewModel> itemsArray;
         private ICollectionView allItems;
-        private ICollectionView changeItems;
+
+        private ObservableCollection<ViewModel.ItemUserCodes_ViewModel> changedArray;
+        private ListCollectionView changeItems;
 
         private ObservableCollection<Model.EducationType> educationTypesArray;
         private ICollectionView educationTypes;
 
-        private ViewModel.ItemUserCodes_ViewModel _currentItem;
+        private ViewModel.ItemUserCodes_ViewModel currentItem;
 
         private string filterCollection;
 
@@ -33,38 +35,36 @@ namespace CodesControl.ViewModel
 
         public ViewModel.ItemUserCodes_ViewModel CurrentItem
         {
-            get { return this._currentItem; }
+            get { return this.currentItem; }
             set
             {
-                this._currentItem = value;
-                Console.WriteLine(_currentItem.CodeId);
+                this.currentItem = value;
+               Console.WriteLine("Куррент - изменео");
                 OnPropertyChanged("CurrentItem");
             }
         }
 
         public Control_ViewModel()
         {
-            itemsArray = new ObservableCollection<ViewModel.ItemUserCodes_ViewModel>(new SomeData().GetItems());
-            allItems = new CollectionViewSource { Source = itemsArray }.View;
-            allItems.CurrentChanged += delegate {
-                changeItems.Refresh();
-                Console.WriteLine("Смена гланого списка");
-            }; 
-
-            changeItems = new CollectionViewSource { Source = itemsArray }.View;
-            changeItems.Filter = OneFilter;
-            changeItems.CurrentChanged += delegate
-            {
-                Console.WriteLine("Смена Измененного списка");
-            };
+            itemsArray = new SomeData().GetItems();
 
             educationTypesArray = new ObservableCollection<Model.EducationType>(CodesTypePrepare());
             educationTypes = new CollectionViewSource { Source = educationTypesArray }.View;
             educationTypes.CurrentChanged += delegate {
-                Console.WriteLine("Смена Статусного списка");
                 this.StringForFilterCollection = null;
-                allItems.Filter = FilterForAviableCollection;
-            };            
+            };
+
+            changedArray = new ObservableCollection<ItemUserCodes_ViewModel>();
+            changeItems = new ListCollectionView(changedArray);
+
+            allItems = new ListCollectionView(this.itemsArray);
+            allItems.Filter = FilterForAviableCollection;
+            allItems.CurrentChanged += delegate {
+                this.CurrentItem = allItems.CurrentItem as ViewModel.ItemUserCodes_ViewModel;
+                this.DifferentCalculate();
+            };
+
+            this.CurrentItem = allItems.CurrentItem as ViewModel.ItemUserCodes_ViewModel;
         }
 
         public ICollectionView AviableCollection
@@ -72,7 +72,15 @@ namespace CodesControl.ViewModel
             get { return this.allItems; }
         }
 
-        public ICollectionView DifferentCollection
+        private void DifferentCalculate()
+        {
+            changedArray = new ObservableCollection<ItemUserCodes_ViewModel> ( (from it in itemsArray where it.BuckUpAviable select it).ToList() );
+            changeItems = new ListCollectionView(changedArray);
+            changeItems.CurrentChanged += delegate { Console.WriteLine("Cvtyf"); };
+            OnPropertyChanged("DifferentCollection");
+        }
+
+        public ListCollectionView DifferentCollection
         {
             get { return this.changeItems; }
         }
@@ -103,7 +111,7 @@ namespace CodesControl.ViewModel
         private bool FilterForAviableCollection(object _item)
         {
             var item = _item as ViewModel.ItemUserCodes_ViewModel;
-            var type = (Model.EducationType)educationTypes.CurrentItem;
+            var type = educationTypes.CurrentItem as Model.EducationType;
 
             string i1, i2;
             bool typeCorrect = true, stringCorrect = true;

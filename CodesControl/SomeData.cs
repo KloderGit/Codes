@@ -10,13 +10,15 @@ namespace CodesControl
 {
     public class SomeData
     {
-        private List<ViewModel.ItemUserCodes_ViewModel> ItemsArray;
+        //private List<ViewModel.ItemUserCodes_ViewModel> ItemsArray;
+
+        private Clsses.Collection.ObserverableCollection_WithNotifyObjectChange<ViewModel.ItemUserCodes_ViewModel> ItemsArray;
 
         public SomeData()
         {
             //System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("ru-RU");
 
-            ItemsArray = new List<ViewModel.ItemUserCodes_ViewModel>();
+            ItemsArray = new Clsses.Collection.ObserverableCollection_WithNotifyObjectChange<ViewModel.ItemUserCodes_ViewModel>();
 
             Model.Users _user = new Model.Users();
             _user.ID = 1;
@@ -134,9 +136,9 @@ namespace CodesControl
             ItemsArray.Add(new ViewModel.ItemUserCodes_ViewModel(new Model.ItemUserCodes_Model(_user5, _code5)));
         }
 
-        public IEnumerable<ViewModel.ItemUserCodes_ViewModel> GetItems()
+        public Clsses.Collection.ObserverableCollection_WithNotifyObjectChange<ViewModel.ItemUserCodes_ViewModel> GetItems()
         {
-            return (IEnumerable<ViewModel.ItemUserCodes_ViewModel>)ItemsArray;
+            return ItemsArray;
         }
     }
 }
