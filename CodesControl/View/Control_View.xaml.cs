@@ -13,5 +13,12 @@ namespace CodesControl.View
         {
             InitializeComponent();
         }
+
+        private void DifferentItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cont = sender as ListView;
+            var item = cont.SelectedItem as ViewModel.ItemUserCodes_ViewModel;
+            System.Console.WriteLine(item.Code);
+        }
     }
 }

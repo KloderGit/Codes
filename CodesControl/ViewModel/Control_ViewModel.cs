@@ -56,6 +56,7 @@ namespace CodesControl.ViewModel
 
             changedArray = new ObservableCollection<ItemUserCodes_ViewModel>();
             changeItems = new ListCollectionView(changedArray);
+            changeItems.CurrentChanged += delegate { Console.WriteLine("Cvtyf"); };
 
             allItems = new ListCollectionView(this.itemsArray);
             allItems.Filter = FilterForAviableCollection;
@@ -76,7 +77,6 @@ namespace CodesControl.ViewModel
         {
             changedArray = new ObservableCollection<ItemUserCodes_ViewModel> ( (from it in itemsArray where it.BuckUpAviable select it).ToList() );
             changeItems = new ListCollectionView(changedArray);
-            changeItems.CurrentChanged += delegate { Console.WriteLine("Cvtyf"); };
             OnPropertyChanged("DifferentCollection");
         }
 

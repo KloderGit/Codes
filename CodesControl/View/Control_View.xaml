@@ -198,7 +198,7 @@
                    Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
                    BorderBrush="{x:Null}" Background="{x:Null}" Margin="10" 
                   MaxHeight="130"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="DifferentItems_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), 
