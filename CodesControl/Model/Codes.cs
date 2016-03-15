@@ -14,16 +14,16 @@ namespace CodesControl.Model
         private Int32 userId;
         private string educationType;
         private DateTime expirationDate;
-
         private Codes buckupCodeValue;
 
         public event EventHandler OnObjectChanged;
+        public event Action OnHasBuckupChanged;
 
         public Int32 Id
         {
             get { return this.id; }
             set {
-                objectChanged(new Secondary.ModelEventArgs(this.id));
+                ObjectChanged(new Secondary.ModelEventArgs(this.id));
                 this.id = value;
             }
         }
@@ -33,7 +33,7 @@ namespace CodesControl.Model
             get { return this.code; }
             set
             {
-                objectChanged(new Secondary.ModelEventArgs(this.code));
+                ObjectChanged(new Secondary.ModelEventArgs(this.code));
                 this.code = value;
             }
         }
@@ -43,7 +43,7 @@ namespace CodesControl.Model
             get { return this.active; }
             set
             {
-                objectChanged(new Secondary.ModelEventArgs(this.active));
+                ObjectChanged(new Secondary.ModelEventArgs(this.active));
                 this.active = value;
             }
         }
@@ -53,7 +53,7 @@ namespace CodesControl.Model
             get { return this.userId; }
             set
             {
-                objectChanged(new Secondary.ModelEventArgs(this.userId));
+                ObjectChanged(new Secondary.ModelEventArgs(this.userId));
                 this.userId = value;
             }
         }
@@ -63,7 +63,7 @@ namespace CodesControl.Model
             get { return this.educationType; }
             set
             {
-                objectChanged(new Secondary.ModelEventArgs(this.educationType));
+                ObjectChanged(new Secondary.ModelEventArgs(this.educationType));
                 this.educationType = value;
             }
         }
@@ -73,29 +73,36 @@ namespace CodesControl.Model
             get { return this.expirationDate; }
             set
             {
-                objectChanged(new Secondary.ModelEventArgs(this.expirationDate));
+                ObjectChanged(new Secondary.ModelEventArgs(this.expirationDate));
                 this.expirationDate = value;
             }
         }
+
+        public bool HasChanged { get { return this.buckupCodeValue == null; } }
+
 
         public object Clone()
         {
             return this.MemberwiseClone();
         }
 
-        private void objectChanged(Secondary.ModelEventArgs e)
+        private void ObjectChanged(Secondary.ModelEventArgs e)
         {
             EventHandler onobjectChanged = OnObjectChanged;
+            if (onobjectChanged != null) { onobjectChanged(this, e); }
 
-            if (onobjectChanged != null)
-            {
-                onobjectChanged(this, e);
-            }
 
             if ( this.buckupCodeValue == null )
             {
                 buckupCodeValue = this.Clone() as Codes;
+                HasBuckupChanged();
             }
+        }
+
+        private void HasBuckupChanged()
+        {
+            Action hasChanged = OnHasBuckupChanged;
+            if ( hasChanged != null ) { hasChanged(); }
         }
     }
 }

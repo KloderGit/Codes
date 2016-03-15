@@ -96,7 +96,7 @@ namespace CodesControl
             _user4.Email = "rinat@mail.ru";
             _user4.Login = "r.ainet";
             _user4.Phone = "8 916 555-34-00";
-            _user4.EducationType = "Z";
+            //_user4.EducationType = "Z";
             _user4.Code = "fdsa";
             _user4.Skype = "kloder1";
 
@@ -104,7 +104,7 @@ namespace CodesControl
             _code4.Id = 14;
             _code4.Code = "fdsa";
             _code4.Active = true;
-            _code4.EducationType = "Z";
+            //_code4.EducationType = "Z";
             _code4.UserId = 4;
             _code4.ExpirationDate = new System.DateTime(2016, 11, 12);
 

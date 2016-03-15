@@ -12,6 +12,8 @@ namespace CodesControl.ViewModel
 
         private ObservableCollection<ViewModel.Student_ViewModel> itemsArray;
         private ICollectionView allItems;
+
+        private ObservableCollection<ViewModel.Student_ViewModel> changeArray;
         private ICollectionView changeItems;
 
         private ObservableCollection<Model.EducationType> educationTypesArray;
@@ -33,6 +35,11 @@ namespace CodesControl.ViewModel
         {
             itemsArray = new ObservableCollection<ViewModel.Student_ViewModel>(new SomeData().GetItems());
 
+            foreach (var item in itemsArray)
+            {
+                item.OnHasBuckup += HasChanged;
+            }
+
             educationTypesArray = new ObservableCollection<Model.EducationType>(CodesTypePrepare());
             educationTypes = new CollectionViewSource { Source = educationTypesArray }.View;
             educationTypes.CurrentChanged += delegate {
@@ -43,12 +50,11 @@ namespace CodesControl.ViewModel
 
             allItems = new CollectionViewSource { Source = itemsArray }.View;
             allItems.CurrentChanged += delegate {
-                changeItems.Refresh();
                 Console.WriteLine("Смена гланого списка");
-            }; 
+            };
 
-            changeItems = new CollectionViewSource { Source = itemsArray }.View;
-            changeItems.Filter = OneFilter;
+            changeArray = new ObservableCollection<Student_ViewModel>();
+            changeItems = new CollectionViewSource { Source = changeArray }.View;
             changeItems.CurrentChanged += delegate
             {
                 Console.WriteLine("Смена Измененного списка");
@@ -75,7 +81,7 @@ namespace CodesControl.ViewModel
         private bool OneFilter(object item)
         {
             ViewModel.Student_ViewModel i = item as ViewModel.Student_ViewModel;
-            return true;// i.BuckUpAviable;
+            return i.HasBuckup;
         }
 
         private List<Model.EducationType> CodesTypePrepare()
@@ -119,6 +125,13 @@ namespace CodesControl.ViewModel
             }
 
             return typeCorrect & stringCorrect;
+        }
+
+        private void HasChanged()
+        {           
+            var _list = from i in this.itemsArray where i.HasBuckup select i;
+            changeArray = new ObservableCollection<Student_ViewModel>(_list);
+            Console.WriteLine("sssssssssssssssss");
         }
 
     }

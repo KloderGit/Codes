@@ -23,13 +23,18 @@ namespace CodesControl.ViewModel
         public string UserSkype { get { return user.Skype; } }
         public Int32 CodeId { get { return code.Id; } }
         public bool CodeActive { get { return code.Active; } }
+        public bool HasBuckup { get { return code.HasChanged || user.HasChanged; } }
 
-
+        public event Action OnHasBuckup;
 
         // Поля для изменения
         public string EducationType
         {
-            get { return code.EducationType; }
+            get 
+            {
+                if (String.IsNullOrEmpty(code.EducationType)) { return "Не установлен"; }
+                return code.EducationType; 
+            }
             set
             {
                 if (value != code.EducationType )
@@ -72,11 +77,19 @@ namespace CodesControl.ViewModel
         public Student_ViewModel(Users _user, Codes _code)
         {
             this.user = _user;
+            this.user.OnHasBuckupChanged += delegate { OnPropertyChanged("HasBuckup"); };
             this.code = _code;
+            this.code.OnHasBuckupChanged += delegate { 
+                OnPropertyChanged("HasBuckup");
+                ChangeHasBuckup();
+            };
         }
 
-
-
+        private void ChangeHasBuckup()
+        {
+            Action hasBuckup = this.OnHasBuckup;
+            if (hasBuckup != null) { hasBuckup(); }
+        }
 
     }
 }

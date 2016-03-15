@@ -20,8 +20,10 @@ namespace CodesControl.Model
         private string skype;
 
         private Users buckupUserValue;
+        public bool HasChanged { get { return this.buckupUserValue == null; } }
 
         public event EventHandler OnObjectChanged;
+        public event Action OnHasBuckupChanged;
 
         public Int32 Id
         {
@@ -140,7 +142,14 @@ namespace CodesControl.Model
             if (this.buckupUserValue == null)
             {
                 buckupUserValue = this.Clone() as Users;
+                HasBuckupChanged();
             }
+        }
+
+        private void HasBuckupChanged()
+        {
+            Action hasChanged = OnHasBuckupChanged;
+            if (hasChanged != null) { hasChanged(); }
         }
     }
 }
