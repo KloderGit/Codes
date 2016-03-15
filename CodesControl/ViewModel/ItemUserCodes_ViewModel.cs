@@ -8,7 +8,7 @@ namespace CodesControl.ViewModel
 {
     public class ItemUserCodes_ViewModel : ViewModelBase
     {
-        Model.ItemUserCodes_Model ItemModel;
+        private Model.ItemUserCodes_Model ItemModel;
 
         // Коструктор
         public ItemUserCodes_ViewModel(Model.ItemUserCodes_Model model)
@@ -17,7 +17,7 @@ namespace CodesControl.ViewModel
         }
 
         //Поля для чтения класса пользователя
-        public Int32 UserId { get { return ItemModel.User.ID; } }
+        public Int32 UserId { get { return ItemModel.User.Id; } }
         public string UserName { get { return ItemModel.User.Name; } }
         public string UserLastName { get { return ItemModel.User.LastName; } }
         public string UserParentName { get { return ItemModel.User.ParentName; } }
@@ -40,7 +40,6 @@ namespace CodesControl.ViewModel
             {
                 if (value != ItemModel.User.EducationType)
                 {
-                    buckupItem();
                     ItemModel.User.EducationType = value; ItemModel.Code.EducationType = value;
                     OnPropertyChanged("EducationType");
                 }
@@ -57,7 +56,6 @@ namespace CodesControl.ViewModel
             {
                 if (value != ItemModel.User.Code)
                 {
-                    buckupItem();
                     ItemModel.User.Code = value; ItemModel.Code.Code = value;
                     OnPropertyChanged("Code");
                 }
@@ -78,7 +76,6 @@ namespace CodesControl.ViewModel
             {
                 if (value != ItemModel.Code.ExpirationDate)
                 {
-                    buckupItem();
                     ItemModel.Code.ExpirationDate = value;
                     OnPropertyChanged("CodeExpirationDate");
                 }
@@ -86,15 +83,6 @@ namespace CodesControl.ViewModel
         }
 
         public bool BuckUpAviable { get { return ItemModel.buckupAviable; } }
-
-        private void buckupItem()
-        {
-            if ( !ItemModel.buckupAviable )
-            {
-                ItemModel.selfBuckup();
-            }
-        }
-
 
     }
 }

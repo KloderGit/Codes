@@ -19,7 +19,7 @@ namespace CodesControl
             ItemsArray = new List<ViewModel.ItemUserCodes_ViewModel>();
 
             Model.Users _user = new Model.Users();
-            _user.ID = 1;
+            _user.Id = 1;
             _user.Name = "Илья";
             _user.LastName = "Иджян";
             _user.ParentName = "Юрьевич";
@@ -42,7 +42,7 @@ namespace CodesControl
 
             // -----------------------------------------
             Model.Users _user2 = new Model.Users();
-            _user2.ID = 2;
+            _user2.Id = 2;
             _user2.Name = "Андрей";
             _user2.LastName = "Лезин";
             _user2.ParentName = "Николаевич";
@@ -65,7 +65,7 @@ namespace CodesControl
 
             // -----------------------------------------
             Model.Users _user3 = new Model.Users();
-            _user3.ID = 3;
+            _user3.Id = 3;
             _user3.Name = "Макарова";
             _user3.LastName = "Надежда";
             _user3.ParentName = "Валерьевна";
@@ -89,7 +89,7 @@ namespace CodesControl
 
             // -----------------------------------------
             Model.Users _user4 = new Model.Users();
-            _user4.ID = 4;
+            _user4.Id = 4;
             _user4.Name = "Айнетдинов";
             _user4.LastName = "Ринат";
             _user4.ParentName = "Саярович";
@@ -112,7 +112,7 @@ namespace CodesControl
 
             // -----------------------------------------
             Model.Users _user5 = new Model.Users();
-            _user5.ID = 5;
+            _user5.Id = 5;
             _user5.Name = "Корнейчук";
             _user5.LastName = "Вадим";
             _user5.ParentName = "Сергеевич";

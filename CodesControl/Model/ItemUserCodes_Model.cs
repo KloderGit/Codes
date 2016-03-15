@@ -25,19 +25,18 @@ namespace CodesControl.Model
         {
             this.id = new Guid();
             this.User = user;
+            user.OnObjectChanged += new EventHandler(object_property_changed);
+
             this.Code = code;
+            code.OnObjectChanged += new EventHandler(object_property_changed);
         }
 
-        public void selfBuckup()
+        private void object_property_changed( object sender, EventArgs e )
         {
-            if (this.buckupUserValue == null)
+            if ( !this.buckupAviable )
             {
-                buckupUserValue = (Model.Users)this.User.Clone();
-            }
-
-            if (this.buckupCodeValue == null)
-            {
-                buckupCodeValue = (Model.Codes)this.Code.Clone();
+                if ( sender is Users ) { buckupUserValue = this.User; Console.WriteLine("Изменен - " + this.User); }
+                if ( sender is Codes ) { buckupCodeValue = this.Code; Console.WriteLine("Изменен - " + this.Code); }
             }
         }
     }
