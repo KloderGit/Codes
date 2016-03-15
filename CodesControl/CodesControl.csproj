@@ -67,6 +67,7 @@
     <Compile Include="SomeData.cs" />
     <Compile Include="ViewModel\Control_ViewModel.cs" />
     <Compile Include="ViewModel\ItemUserCodes_ViewModel.cs" />
+    <Compile Include="ViewModel\Student_ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Control_View.xaml.cs">
       <DependentUpon>Control_View.xaml</DependentUpon>

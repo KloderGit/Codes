@@ -10,7 +10,7 @@ namespace CodesControl.ViewModel
     public class Control_ViewModel : ViewModelBase
     {
 
-        private ObservableCollection<ViewModel.ItemUserCodes_ViewModel> itemsArray;
+        private ObservableCollection<ViewModel.Student_ViewModel> itemsArray;
         private ICollectionView allItems;
         private ICollectionView changeItems;
 
@@ -31,7 +31,7 @@ namespace CodesControl.ViewModel
 
         public Control_ViewModel()
         {
-            itemsArray = new ObservableCollection<ViewModel.ItemUserCodes_ViewModel>(new SomeData().GetItems());
+            itemsArray = new ObservableCollection<ViewModel.Student_ViewModel>(new SomeData().GetItems());
 
             educationTypesArray = new ObservableCollection<Model.EducationType>(CodesTypePrepare());
             educationTypes = new CollectionViewSource { Source = educationTypesArray }.View;
@@ -74,8 +74,8 @@ namespace CodesControl.ViewModel
 
         private bool OneFilter(object item)
         {
-            ViewModel.ItemUserCodes_ViewModel i = item as ViewModel.ItemUserCodes_ViewModel;
-            return i.BuckUpAviable;
+            ViewModel.Student_ViewModel i = item as ViewModel.Student_ViewModel;
+            return true;// i.BuckUpAviable;
         }
 
         private List<Model.EducationType> CodesTypePrepare()
@@ -92,7 +92,7 @@ namespace CodesControl.ViewModel
 
         private bool FilterForAviableCollection(object _item)
         {
-            var item = _item as ViewModel.ItemUserCodes_ViewModel;
+            var item = _item as ViewModel.Student_ViewModel;
             var type = (Model.EducationType)educationTypes.CurrentItem;
 
             string i1, i2;

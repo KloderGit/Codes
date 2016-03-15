@@ -15,6 +15,8 @@ namespace CodesControl.Model
         private string educationType;
         private DateTime expirationDate;
 
+        private Codes buckupCodeValue;
+
         public event EventHandler OnObjectChanged;
 
         public Int32 Id
@@ -86,7 +88,14 @@ namespace CodesControl.Model
             EventHandler onobjectChanged = OnObjectChanged;
 
             if (onobjectChanged != null)
+            {
                 onobjectChanged(this, e);
+            }
+
+            if ( this.buckupCodeValue == null )
+            {
+                buckupCodeValue = this.Clone() as Codes;
+            }
         }
     }
 }

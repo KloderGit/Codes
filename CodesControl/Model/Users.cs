@@ -19,6 +19,8 @@ namespace CodesControl.Model
         private string code;
         private string skype;
 
+        private Users buckupUserValue;
+
         public event EventHandler OnObjectChanged;
 
         public Int32 Id
@@ -26,8 +28,8 @@ namespace CodesControl.Model
             get { return this.id; }
             set
             {
-                this.id = value;
                 objectChanged(new Secondary.ModelEventArgs(this.id));
+                this.id = value;
             }
         }
 
@@ -36,8 +38,8 @@ namespace CodesControl.Model
             get { return this.name; }
             set
             {
-                this.name = value;
                 objectChanged(new Secondary.ModelEventArgs(this.name));
+                this.name = value;
             }
         }
 
@@ -46,8 +48,8 @@ namespace CodesControl.Model
             get { return this.lastName; }
             set
             {
-                this.lastName = value;
                 objectChanged(new Secondary.ModelEventArgs(this.lastName));
+                this.lastName = value;
             }
         }
 
@@ -56,8 +58,8 @@ namespace CodesControl.Model
             get { return this.parentName; }
             set
             {
-                this.parentName = value;
                 objectChanged(new Secondary.ModelEventArgs(this.parentName));
+                this.parentName = value;
             }
         }
 
@@ -66,8 +68,8 @@ namespace CodesControl.Model
             get { return this.email; }
             set
             {
-                this.email = value;
                 objectChanged(new Secondary.ModelEventArgs(this.email));
+                this.email = value;
             }
         }
 
@@ -76,8 +78,8 @@ namespace CodesControl.Model
             get { return this.login; }
             set
             {
-                this.login = value;
                 objectChanged(new Secondary.ModelEventArgs(this.login));
+                this.login = value;
             }
         }
 
@@ -86,8 +88,8 @@ namespace CodesControl.Model
             get { return this.educationType; }
             set
             {
-                this.educationType = value;
                 objectChanged(new Secondary.ModelEventArgs(this.educationType));
+                this.educationType = value;
             }
         }
 
@@ -96,8 +98,8 @@ namespace CodesControl.Model
             get { return this.phone; }
             set
             {
-                this.phone = value;
                 objectChanged(new Secondary.ModelEventArgs(this.phone));
+                this.phone = value;
             }
         }
 
@@ -106,8 +108,8 @@ namespace CodesControl.Model
             get { return this.code; }
             set
             {
-                this.code = value;
                 objectChanged(new Secondary.ModelEventArgs(this.code));
+                this.code = value;
             }
         }
 
@@ -116,8 +118,8 @@ namespace CodesControl.Model
             get { return this.skype; }
             set
             {
-                this.skype = value;
                 objectChanged(new Secondary.ModelEventArgs(this.skype));
+                this.skype = value;
             }
         }
 
@@ -131,7 +133,14 @@ namespace CodesControl.Model
             EventHandler _onObjectChanged = OnObjectChanged;
 
             if (_onObjectChanged != null)
+            {
                 _onObjectChanged(this, e);
+            }
+
+            if (this.buckupUserValue == null)
+            {
+                buckupUserValue = this.Clone() as Users;
+            }
         }
     }
 }

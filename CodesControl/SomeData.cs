@@ -10,13 +10,13 @@ namespace CodesControl
 {
     public class SomeData
     {
-        private List<ViewModel.ItemUserCodes_ViewModel> ItemsArray;
+        private List<ViewModel.Student_ViewModel> ItemsArray;
 
         public SomeData()
         {
             //System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("ru-RU");
 
-            ItemsArray = new List<ViewModel.ItemUserCodes_ViewModel>();
+            ItemsArray = new List<ViewModel.Student_ViewModel>();
 
             Model.Users _user = new Model.Users();
             _user.Id = 1;
@@ -38,7 +38,7 @@ namespace CodesControl
             _code.EducationType = "S";
             _code.ExpirationDate = new System.DateTime(2016, 8, 15);
 
-            ItemsArray.Add(new ViewModel.ItemUserCodes_ViewModel(new Model.ItemUserCodes_Model(_user, _code)));
+            ItemsArray.Add(new ViewModel.Student_ViewModel(_user, _code));
 
             // -----------------------------------------
             Model.Users _user2 = new Model.Users();
@@ -61,7 +61,7 @@ namespace CodesControl
             _code2.EducationType = "Z";
             _code2.ExpirationDate = new System.DateTime(2016, 6, 10);
 
-            ItemsArray.Add(new ViewModel.ItemUserCodes_ViewModel(new Model.ItemUserCodes_Model(_user2, _code2)));
+            ItemsArray.Add(new ViewModel.Student_ViewModel(_user2, _code2));
 
             // -----------------------------------------
             Model.Users _user3 = new Model.Users();
@@ -84,7 +84,7 @@ namespace CodesControl
             _code3.EducationType = "V";
             _code3.ExpirationDate = new System.DateTime(2016, 11, 5);
 
-            ItemsArray.Add(new ViewModel.ItemUserCodes_ViewModel(new Model.ItemUserCodes_Model(_user3, _code3)));
+            ItemsArray.Add(new ViewModel.Student_ViewModel(_user3, _code3));
 
 
             // -----------------------------------------
@@ -96,7 +96,7 @@ namespace CodesControl
             _user4.Email = "rinat@mail.ru";
             _user4.Login = "r.ainet";
             _user4.Phone = "8 916 555-34-00";
-            // _user4.EducationType = "Z";
+            _user4.EducationType = "Z";
             _user4.Code = "fdsa";
             _user4.Skype = "kloder1";
 
@@ -104,11 +104,11 @@ namespace CodesControl
             _code4.Id = 14;
             _code4.Code = "fdsa";
             _code4.Active = true;
-            // _code4.EducationType = "Z";
+            _code4.EducationType = "Z";
             _code4.UserId = 4;
             _code4.ExpirationDate = new System.DateTime(2016, 11, 12);
 
-            ItemsArray.Add(new ViewModel.ItemUserCodes_ViewModel(new Model.ItemUserCodes_Model(_user4, _code4)));
+            ItemsArray.Add(new ViewModel.Student_ViewModel(_user4, _code4));
 
             // -----------------------------------------
             Model.Users _user5 = new Model.Users();
@@ -131,12 +131,12 @@ namespace CodesControl
             _code5.UserId = 5;
             _code5.ExpirationDate = new System.DateTime(2016, 11, 12);
 
-            ItemsArray.Add(new ViewModel.ItemUserCodes_ViewModel(new Model.ItemUserCodes_Model(_user5, _code5)));
+            ItemsArray.Add(new ViewModel.Student_ViewModel(_user5, _code5));
         }
 
-        public IEnumerable<ViewModel.ItemUserCodes_ViewModel> GetItems()
+        public IEnumerable<ViewModel.Student_ViewModel> GetItems()
         {
-            return (IEnumerable<ViewModel.ItemUserCodes_ViewModel>)ItemsArray;
+            return (IEnumerable<ViewModel.Student_ViewModel>)ItemsArray;
         }
     }
 }
