@@ -20,7 +20,7 @@ namespace CodesControl.Model
         private string skype;
 
         private Users buckupUserValue;
-        public bool HasChanged { get { return this.buckupUserValue == null; } }
+        public bool HasChanged { get { return this.buckupUserValue != null; } }
 
         public event EventHandler OnObjectChanged;
         public event Action OnHasBuckupChanged;
@@ -130,6 +130,12 @@ namespace CodesControl.Model
             return this.MemberwiseClone();
         }
 
+        public void Restore()
+        {
+            this.buckupUserValue = null;
+            HasBuckupChanged();
+        }
+
         private void objectChanged(Secondary.ModelEventArgs e)
         {
             EventHandler _onObjectChanged = OnObjectChanged;
@@ -150,6 +156,7 @@ namespace CodesControl.Model
         {
             Action hasChanged = OnHasBuckupChanged;
             if (hasChanged != null) { hasChanged(); }
+            Console.WriteLine(" Изменено наличие бекапа в объекте Пользователь c ID - " + this.HasChanged);
         }
     }
 }

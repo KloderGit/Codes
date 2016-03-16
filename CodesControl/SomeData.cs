@@ -29,6 +29,7 @@ namespace CodesControl
             _user.Phone = "8 903 145-34-12";
             _user.Code = "qwerty";
             _user.Skype = "kloder1";
+            _user.Restore();
 
             Model.Codes _code = new Model.Codes();
             _code.Id = 11;
@@ -37,6 +38,7 @@ namespace CodesControl
             _code.UserId = 1;
             _code.EducationType = "S";
             _code.ExpirationDate = new System.DateTime(2016, 8, 15);
+            _code.Restore();
 
             ItemsArray.Add(new ViewModel.Student_ViewModel(_user, _code));
 
@@ -52,6 +54,7 @@ namespace CodesControl
             _user2.Phone = "8 903 888-54-66";
             _user2.Code = "asdfg";
             _user2.Skype = "kloder1";
+            _user2.Restore();
 
             Model.Codes _code2 = new Model.Codes();
             _code2.Id = 12;
@@ -60,6 +63,7 @@ namespace CodesControl
             _code2.UserId = 2;
             _code2.EducationType = "Z";
             _code2.ExpirationDate = new System.DateTime(2016, 6, 10);
+            _code2.Restore();
 
             ItemsArray.Add(new ViewModel.Student_ViewModel(_user2, _code2));
 
@@ -75,6 +79,7 @@ namespace CodesControl
             _user3.Phone = "8 903 345-98-45";
             _user3.Code = "rewq";
             _user3.Skype = "kloder1";
+            _user3.Restore();
 
             Model.Codes _code3 = new Model.Codes();
             _code3.Id = 13;
@@ -83,6 +88,7 @@ namespace CodesControl
             _code3.UserId = 3;
             _code3.EducationType = "V";
             _code3.ExpirationDate = new System.DateTime(2016, 11, 5);
+            _code3.Restore();
 
             ItemsArray.Add(new ViewModel.Student_ViewModel(_user3, _code3));
 
@@ -99,6 +105,7 @@ namespace CodesControl
             //_user4.EducationType = "Z";
             _user4.Code = "fdsa";
             _user4.Skype = "kloder1";
+            _user4.Restore();
 
             Model.Codes _code4 = new Model.Codes();
             _code4.Id = 14;
@@ -107,6 +114,7 @@ namespace CodesControl
             //_code4.EducationType = "Z";
             _code4.UserId = 4;
             _code4.ExpirationDate = new System.DateTime(2016, 11, 12);
+            _code4.Restore();
 
             ItemsArray.Add(new ViewModel.Student_ViewModel(_user4, _code4));
 
@@ -122,6 +130,7 @@ namespace CodesControl
             _user5.EducationType = "Z";
             _user5.Code = "zxcv";
             _user5.Skype = "kloder1";
+            _user5.Restore();
 
             Model.Codes _code5 = new Model.Codes();
             _code5.Id = 15;
@@ -130,6 +139,7 @@ namespace CodesControl
             _code5.EducationType = "Z";
             _code5.UserId = 5;
             _code5.ExpirationDate = new System.DateTime(2016, 11, 12);
+            _code5.Restore();
 
             ItemsArray.Add(new ViewModel.Student_ViewModel(_user5, _code5));
         }

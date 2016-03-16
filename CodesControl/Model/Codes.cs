@@ -33,8 +33,8 @@ namespace CodesControl.Model
             get { return this.code; }
             set
             {
-                ObjectChanged(new Secondary.ModelEventArgs(this.code));
                 this.code = value;
+                ObjectChanged(new Secondary.ModelEventArgs(this.code));
             }
         }
 
@@ -43,8 +43,8 @@ namespace CodesControl.Model
             get { return this.active; }
             set
             {
-                ObjectChanged(new Secondary.ModelEventArgs(this.active));
                 this.active = value;
+                ObjectChanged(new Secondary.ModelEventArgs(this.active));
             }
         }
 
@@ -53,8 +53,8 @@ namespace CodesControl.Model
             get { return this.userId; }
             set
             {
-                ObjectChanged(new Secondary.ModelEventArgs(this.userId));
                 this.userId = value;
+                ObjectChanged(new Secondary.ModelEventArgs(this.userId));
             }
         }
 
@@ -63,8 +63,8 @@ namespace CodesControl.Model
             get { return this.educationType; }
             set
             {
-                ObjectChanged(new Secondary.ModelEventArgs(this.educationType));
                 this.educationType = value;
+                ObjectChanged(new Secondary.ModelEventArgs(this.educationType));
             }
         }
 
@@ -73,12 +73,12 @@ namespace CodesControl.Model
             get { return this.expirationDate; }
             set
             {
-                ObjectChanged(new Secondary.ModelEventArgs(this.expirationDate));
                 this.expirationDate = value;
+                ObjectChanged(new Secondary.ModelEventArgs(this.expirationDate));
             }
         }
 
-        public bool HasChanged { get { return this.buckupCodeValue == null; } }
+        public bool HasChanged { get { return this.buckupCodeValue != null; } }
 
 
         public object Clone()
@@ -86,11 +86,19 @@ namespace CodesControl.Model
             return this.MemberwiseClone();
         }
 
+        public void Restore()
+        {
+            this.buckupCodeValue = null;
+            HasBuckupChanged();
+        }
+
         private void ObjectChanged(Secondary.ModelEventArgs e)
         {
             EventHandler onobjectChanged = OnObjectChanged;
-            if (onobjectChanged != null) { onobjectChanged(this, e); }
-
+            if ( onobjectChanged != null )
+            {
+                onobjectChanged(this, e);
+            }
 
             if ( this.buckupCodeValue == null )
             {
@@ -103,6 +111,8 @@ namespace CodesControl.Model
         {
             Action hasChanged = OnHasBuckupChanged;
             if ( hasChanged != null ) { hasChanged(); }
+
+            Console.WriteLine(" Изменено наличие бекапа в объекте Кода c ID - " + this.HasChanged);
         }
     }
 }

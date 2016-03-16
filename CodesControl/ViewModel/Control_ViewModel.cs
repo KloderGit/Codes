@@ -128,10 +128,12 @@ namespace CodesControl.ViewModel
         }
 
         private void HasChanged()
-        {           
+        {
+            Console.WriteLine("Перетасовка списка");
             var _list = from i in this.itemsArray where i.HasBuckup select i;
             changeArray = new ObservableCollection<Student_ViewModel>(_list);
-            Console.WriteLine("sssssssssssssssss");
+            changeItems = new CollectionViewSource { Source = changeArray }.View;
+
         }
 
     }
