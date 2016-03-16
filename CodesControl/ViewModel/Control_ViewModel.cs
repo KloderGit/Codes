@@ -133,7 +133,11 @@ namespace CodesControl.ViewModel
             var _list = from i in this.itemsArray where i.HasBuckup select i;
             changeArray = new ObservableCollection<Student_ViewModel>(_list);
             changeItems = new CollectionViewSource { Source = changeArray }.View;
-
+            OnPropertyChanged("DifferentCollection");
+            changeItems.CurrentChanged += delegate
+            {
+                Console.WriteLine("Смена Измененного списка");
+            };
         }
 
     }
