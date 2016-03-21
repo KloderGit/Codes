@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Data;
 using System.ComponentModel;
+using System.Collections.Specialized;
 
 namespace CodesControl.ViewModel
 {
     public class Control_ViewModel : ViewModelBase
     {
 
-        private ObservableCollection<ViewModel.Student_ViewModel> itemsArray;
+        private ObservableCollection<Student_ViewModel> itemsArray;
         private ICollectionView allItems;
 
-        private ObservableCollection<ViewModel.Student_ViewModel> changeArray;
+        private List<Student_ViewModel> changeArray;
         private ICollectionView changeItems;
 
         private ObservableCollection<Model.EducationType> educationTypesArray;
@@ -33,7 +34,7 @@ namespace CodesControl.ViewModel
 
         public Control_ViewModel()
         {
-            itemsArray = new ObservableCollection<ViewModel.Student_ViewModel>(new SomeData().GetItems());
+            itemsArray = new ObservableCollection<Student_ViewModel>(new SomeData().GetItems());
 
             foreach (var item in itemsArray)
             {
@@ -53,14 +54,14 @@ namespace CodesControl.ViewModel
                 Console.WriteLine("Смена гланого списка");
             };
 
-            changeArray = new ObservableCollection<Student_ViewModel>();
-            changeItems = new CollectionViewSource { Source = changeArray }.View;
-            changeItems.CurrentChanged += delegate
-            {
-                Console.WriteLine("Смена Измененного списка");
-            };
+            //changeItems = new CollectionViewSource { Source = itemsArray }.View;
+            //changeItems.CollectionChanged += delegate {
+            //    Console.WriteLine("Смена состава второго списка");
+            //};
+            //changeItems.Filter = OneFilter;
 
-           
+            changeArray = new List<Student_ViewModel>();
+
         }
 
         public ICollectionView AviableCollection
@@ -131,13 +132,14 @@ namespace CodesControl.ViewModel
         {
             Console.WriteLine("Перетасовка списка");
             var _list = from i in this.itemsArray where i.HasBuckup select i;
-            changeArray = new ObservableCollection<Student_ViewModel>(_list);
-            changeItems = new CollectionViewSource { Source = changeArray }.View;
+            changeArray = _list.ToList();
+
+            changeItems = new ListCollectionView(changeArray);
+
+            changeItems.Refresh();
             OnPropertyChanged("DifferentCollection");
-            changeItems.CurrentChanged += delegate
-            {
-                Console.WriteLine("Смена Измененного списка");
-            };
+
+            changeItems.CurrentChanged += delegate { Console.WriteLine("Второй куррент изменен!"); };
         }
 
     }

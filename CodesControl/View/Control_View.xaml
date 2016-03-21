@@ -20,7 +20,6 @@
         <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Статус кода"  Foreground="#333333" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14.667" Margin="10,0,0,0"/>
 
         <ListView x:Name="CodesTypes" 
-                  IsSynchronizedWithCurrentItem ="True"
                   ItemsSource="{Binding CodesType}" 
                   SelectionMode="Single"
                   Grid.Row="1" Grid.RowSpan="2" BorderBrush="{x:Null}" 
@@ -52,7 +51,6 @@
 
         <ListView x:Name="AviableItems" 
                  ItemsSource="{Binding AviableCollection}"
-                 IsSynchronizedWithCurrentItem="True"
                  SelectionMode="Single"
                  Grid.Row="1" Grid.Column="1" BorderBrush="{x:Null}" Background="{x:Null}" Margin="10,0,10,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
             <ListView.ItemTemplate>
@@ -82,6 +80,7 @@
                                         <TextBlock Text="Срок:" />
                                         <TextBlock Text="{Binding CodeExpirationDate, StringFormat=dd MMMM yyyy}" Margin="10,0,0,0"/>
                                     </StackPanel>
+                                    <TextBlock Text="{Binding HasBuckup}" />
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
@@ -168,12 +167,12 @@
 
                             <TextBlock Text="Тип:" Margin="0" FontSize="16"
                                        Grid.Row="4" VerticalAlignment="Center"/>
-                            <TextBox Text="{Binding EducationType, UpdateSourceTrigger=PropertyChanged}" 
+                            <TextBlock Text="{Binding EducationType}" 
                         			Grid.Row="4" Grid.Column="1" FontSize="16" VerticalAlignment="Center" />
 
                             <TextBlock Text="Код:" FontSize="16" VerticalAlignment="Center"
                                        Grid.Row="5"/>
-                            <TextBox Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}"
+                            <TextBlock Text="{Binding Code}"
                                      Grid.Row="5" Grid.Column="1"
                                      FontSize="16" VerticalAlignment="Center" />
 
