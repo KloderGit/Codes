@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MySql_Connection.cs" />
-    <Compile Include="MySql_Shh_Connection.cs" />
+    <Compile Include="MySql_SSH_Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

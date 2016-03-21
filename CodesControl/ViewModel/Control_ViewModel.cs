@@ -37,7 +37,7 @@ namespace CodesControl.ViewModel
         {
             itemsArray = new ObservableCollection<Student_ViewModel>(new SomeData().GetItems());
 
-            var m = new CodesADONet.MySql_Shh_Connection();
+            var m = new CodesADONet.MySql_SSH_Connection();
 
             foreach (var item in itemsArray)
             {
