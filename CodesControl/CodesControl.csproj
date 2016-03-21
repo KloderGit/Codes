@@ -113,6 +113,12 @@
   <ItemGroup>
     <Resource Include="images\User-mini.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodesADONet\CodesADONet.csproj">
+      <Project>{7d48764c-a449-4fa6-a2be-aec93496dc27}</Project>
+      <Name>CodesADONet</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

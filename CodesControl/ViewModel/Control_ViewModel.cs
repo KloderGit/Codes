@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Data;
 using System.ComponentModel;
 using System.Collections.Specialized;
+using CodesADONet;
 
 namespace CodesControl.ViewModel
 {
@@ -35,6 +36,8 @@ namespace CodesControl.ViewModel
         public Control_ViewModel()
         {
             itemsArray = new ObservableCollection<Student_ViewModel>(new SomeData().GetItems());
+
+            var m = new CodesADONet.MySql_Shh_Connection();
 
             foreach (var item in itemsArray)
             {
