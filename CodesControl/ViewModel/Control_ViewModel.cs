@@ -38,6 +38,7 @@ namespace CodesControl.ViewModel
             itemsArray = new ObservableCollection<Student_ViewModel>(new SomeData().GetItems());
 
             var m = new CodesADONet.MySql_SSH_Connection();
+            var mm = m.GetCodes();
 
             foreach (var item in itemsArray)
             {
@@ -145,5 +146,18 @@ namespace CodesControl.ViewModel
             changeItems.CurrentChanged += delegate { Console.WriteLine("Второй куррент изменен!"); };
         }
 
+
+        //private void PrepareCode()
+        //{
+        //    var m = new CodesADONet.MySql_SSH_Connection();
+        //    var mm = m.GetCodes();
+
+        //    foreach (var row in mm.Rows)
+        //    {
+        //        var cod = new Model.Codes();
+
+        //        cod.Id = (int)row[0];
+        //    }
+        //}
     }
 }

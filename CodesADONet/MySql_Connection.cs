@@ -1,5 +1,6 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace CodesADONet
 {
@@ -22,7 +23,7 @@ namespace CodesADONet
             password = _pass;
             port = _port;
 
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";" + "PORT=" + _port + ";" + "Allow Zero Datetime=true;";
 
             connection = new MySqlConnection(connectionString);
 
@@ -69,22 +70,37 @@ namespace CodesADONet
             }
         }
 
-        public void GetData()
+
+        public DataTable GetCodes()
         {
+            var table = new DataTable();
+
             if (OpenConnection())
             {
-                var cmd = new MySqlCommand("Select * From se_usergroup", connection);
+                var CodesAdapter = new MySqlDataAdapter("Select id, code, status, user_id, type, exp_data From code_activation where user_id != 0", connection);
 
-                using (MySqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        Console.WriteLine(dr.GetString(1));
-                    }
-                }
+                CodesAdapter.Fill(table);
 
+                CloseConnection();
             }
 
+            return table;
+        }
+
+        public DataTable GetUser()
+        {
+            var table = new DataTable();
+
+            if (OpenConnection())
+            {
+                var CodesAdapter = new MySqlDataAdapter("Select * From b_blog_post", connection);
+
+                CodesAdapter.Fill(table);
+
+                CloseConnection();
+            }
+
+            return table;
         }
     }
 }
