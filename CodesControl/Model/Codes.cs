@@ -112,7 +112,7 @@ namespace CodesControl.Model
             Action hasChanged = OnHasBuckupChanged;
             if ( hasChanged != null ) { hasChanged(); }
 
-            Console.WriteLine(" Изменено наличие бекапа в объекте Кода c ID - " + this.HasChanged);
+            //Console.WriteLine(" Изменено наличие бекапа в объекте Кода c ID - " + this.HasChanged);
         }
     }
 }

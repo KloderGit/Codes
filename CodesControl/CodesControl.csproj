@@ -59,6 +59,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\PrepareStudents.cs" />
     <Compile Include="Model\Codes.cs" />
     <Compile Include="Model\EducationType.cs" />
     <Compile Include="Model\Users.cs" />

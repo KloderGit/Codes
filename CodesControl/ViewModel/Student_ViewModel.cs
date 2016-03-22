@@ -77,7 +77,15 @@ namespace CodesControl.ViewModel
         public Student_ViewModel(Users _user, Codes _code)
         {
             this.user = _user;
-            this.user.OnHasBuckupChanged += delegate { OnPropertyChanged("HasBuckup"); };
+
+
+            //  НА время, для создания ВМ , без user
+            if (user != null)
+            {
+                this.user.OnHasBuckupChanged += delegate { OnPropertyChanged("HasBuckup"); };
+
+            }
+
             this.code = _code;
             this.code.OnHasBuckupChanged += delegate { 
                 OnPropertyChanged("HasBuckup");
