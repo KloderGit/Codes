@@ -28,11 +28,11 @@ namespace CodesControl.Data
             {
                 var cod = new Model.Codes();
 
-                cod.Id = (int)row[0];
-                cod.Code = (string)row[1];
+                cod.Id = String.IsNullOrEmpty(row[0].ToString()) ? 0 : (int)row[0];
+                cod.Code = String.IsNullOrEmpty(row[1].ToString()) ? "" : (string)row[1];
                 cod.Active = (int)row[2] == 1 ? true : false;
-                cod.UserId = (int)row[3];
-                cod.EducationType = (string)row[4];
+                cod.UserId = String.IsNullOrEmpty(row[3].ToString()) ? 0 : (int)row[3];
+                cod.EducationType = String.IsNullOrEmpty(row[4].ToString()) ? "" : (string)row[4];
 
                 try
                 {
@@ -53,32 +53,50 @@ namespace CodesControl.Data
 
         private List<Model.Users> usersList()
         {
-            List<Model.Users> codes = new List<Model.Users>();
+            List<Model.Users> users = new List<Model.Users>();
 
             foreach (DataRow row in userTable.Rows)
             {
                 Model.Users user = new Model.Users();
 
-                user.Id = 
+                user.Id = String.IsNullOrEmpty(row[0].ToString()) ? 0 : (int)row[0];
+                user.Name = String.IsNullOrEmpty(row[1].ToString()) ? "" : (string)row[1];
+                user.LastName = String.IsNullOrEmpty(row[2].ToString()) ? "" : (string)row[2];
+                user.ParentName = String.IsNullOrEmpty(row[3].ToString()) ? "" : (string)row[3];
+                user.Email = String.IsNullOrEmpty(row[4].ToString()) ? "" : (string)row[4];
+                user.Login = String.IsNullOrEmpty(row[5].ToString()) ? "" : (string)row[5];
+                user.Phone = String.IsNullOrEmpty(row[6].ToString()) ? "" : (string)row[6];
+                user.Code = String.IsNullOrEmpty(row[7].ToString()) ? "" : (string)row[7];
+                user.Skype = String.IsNullOrEmpty(row[8].ToString()) ? "" : (string)row[8];
+                user.Restore();
 
-
-
-                cod.Restore();
-
-                codes.Add(cod);
+                users.Add(user);
             }
 
-            return codes;
+            return users;
+        }
+
+        public List<ViewModel.Student_ViewModel> GetStudents()
+        {
+            List<ViewModel.Student_ViewModel> students = new List<ViewModel.Student_ViewModel>();
+
+            var codes = codesList();
+            var users = usersList();
+
+            foreach (var codeItem in codes)
+            {
+                
+                Model.Users user = users.FirstOrDefault(p => p.Code == codeItem.Code);
+
+                if (user != null)
+                {
+                    var student = new ViewModel.Student_ViewModel(user, codeItem);
+
+                    students.Add(student);
+                }
+            }
+
+            return students;
         }
     }
 }
-private Int32 id;
-private string name;
-private string lastName;
-private string parentName;
-private string email;
-private string login;
-private string educationType;
-private string phone;
-private string code;
-private string skype;

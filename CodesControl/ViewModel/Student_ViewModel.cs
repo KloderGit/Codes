@@ -15,7 +15,7 @@ namespace CodesControl.ViewModel
         //Поля для чтения
         public Int32 UserId { get { return user.Id; } }
         public string UserName { get { return user.Name; } }
-        public string UserLastName { get { return user.LastName; } }
+        public string UserLastName { get { return String.IsNullOrEmpty(user.LastName) ? "": user.LastName; } }
         public string UserParentName { get { return user.ParentName; } }
         public string UserEmail { get { return user.Email; } }
         public string UserLogin { get { return user.Login; } }
@@ -39,7 +39,7 @@ namespace CodesControl.ViewModel
             {
                 if (value != code.EducationType )
                 {
-                    user.EducationType = value;
+                    //user.EducationType = value;
                     code.EducationType = value;
                     OnPropertyChanged("EducationType");
                 }

@@ -9,8 +9,6 @@ namespace CodesADONet
     {
         // Setup Credentials and Server Information
         ConnectionInfo ConnNfo = new ConnectionInfo("u432805.ssh.masterhost.ru", 22, "u432805", new AuthenticationMethod[]{ new PasswordAuthenticationMethod("u432805", "re2tionoush") });
-        ForwardedPortLocal tunnel = new ForwardedPortLocal("127.0.0.1", 3306, "u432805.mysql.masterhost.ru", 3306);
-        SshClient sshclient;
         MySql_Connection mysql;
 
         delegate DataTable submitAction();
@@ -38,17 +36,23 @@ namespace CodesADONet
         {
             DataTable table = new DataTable();
 
-            using (sshclient = new SshClient(ConnNfo))
+            using (var sshclient = new SshClient(ConnNfo))
             {
 
                 try
                 {
                     sshclient.Connect();
-                    sshclient.AddForwardedPort(tunnel);
-                    tunnel.Start();
-                    Console.WriteLine("SSH установлено, тунель открыт");
+                    Console.WriteLine("SSH установлено");
 
-                    table = _execute();
+                    using (var tunnel = new ForwardedPortLocal("127.0.0.1", 3306, "u432805.mysql.masterhost.ru", 3306))
+                    {
+                        sshclient.AddForwardedPort(tunnel);
+                        tunnel.Start();
+                        Console.WriteLine("Тунель открыт");
+
+                        table = _execute();
+                    }
+
                 }
                 catch (Exception e)
                 {

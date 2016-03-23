@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CodesControl.View"
-             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="1000">
+             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="1150">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -13,11 +13,11 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="415"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Статус кода"  Foreground="#333333" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14.667" Margin="10,0,0,0"/>
+        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Статус кода"  Foreground="#333333" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14.667" Margin="10,10,0,10" Height="20" Width="78"/>
 
         <ListView x:Name="CodesTypes" 
                   ItemsSource="{Binding CodesType}" 
@@ -190,7 +190,7 @@
 
 
         <Label Content="[ Не сохраненные изменения ]"
-               Grid.Column="1" Grid.Row="2" Margin="22,-7,0,0" Width="180" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Foreground="#FF9B9B9B" Panel.ZIndex="1" />
+               Grid.Column="1" Grid.Row="2" Width="180" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Foreground="#FF9B9B9B" Panel.ZIndex="1" Grid.RowSpan="2" />
 
         <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="0,1,0,0" BorderBrush="#FFD1D1D1" Margin="7,7,0,0" />
 

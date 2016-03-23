@@ -25,7 +25,7 @@ namespace CodesControl
             _user.ParentName = "Юрьевич";
             _user.Email = "kloder@mail.ru";
             _user.Login = "kloder";
-            _user.EducationType = "S";
+            //_user.EducationType = "S";
             _user.Phone = "8 903 145-34-12";
             _user.Code = "qwerty";
             _user.Skype = "kloder1";
@@ -50,7 +50,7 @@ namespace CodesControl
             _user2.ParentName = "Николаевич";
             _user2.Email = "angel@mail.ru";
             _user2.Login = "lezin";
-            _user2.EducationType = "Z";
+            //_user2.EducationType = "Z";
             _user2.Phone = "8 903 888-54-66";
             _user2.Code = "asdfg";
             _user2.Skype = "kloder1";
@@ -75,7 +75,7 @@ namespace CodesControl
             _user3.ParentName = "Валерьевна";
             _user3.Email = "n.makarova@mail.ru";
             _user3.Login = "makar";
-            _user3.EducationType = "V";
+            //_user3.EducationType = "V";
             _user3.Phone = "8 903 345-98-45";
             _user3.Code = "rewq";
             _user3.Skype = "kloder1";
@@ -127,7 +127,7 @@ namespace CodesControl
             _user5.Email = "nat@mail.ru";
             _user5.Login = "inet";
             _user5.Phone = "8 916 333-43-54";
-            _user5.EducationType = "Z";
+            //_user5.EducationType = "Z";
             _user5.Code = "zxcv";
             _user5.Skype = "kloder1";
             _user5.Restore();

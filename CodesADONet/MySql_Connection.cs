@@ -35,7 +35,7 @@ namespace CodesADONet
             try
             {
                 connection.Open();
-                Console.WriteLine("Соединение установлено!!!");
+                Console.WriteLine("MySQL - Соединение установлено!!!");
                 return true;
             }
             catch (MySqlException ex)
@@ -49,6 +49,10 @@ namespace CodesADONet
                     case 1045:
                         Console.WriteLine("Invalid username/password, please try again");
                         break;
+                    default:
+                        Console.WriteLine(ex.Message);
+                        break;
+
                 }
                 return false;
             }
@@ -60,7 +64,7 @@ namespace CodesADONet
             try
             {
                 connection.Close();
-                Console.WriteLine("Соединение закрыто!!!");
+                Console.WriteLine("MySQL - Соединение закрыто!!!");
                 return true;
             }
             catch (MySqlException ex)
@@ -80,9 +84,9 @@ namespace CodesADONet
                 var CodesAdapter = new MySqlDataAdapter("Select id, code, status, user_id, type, exp_data From code_activation where user_id != 0", connection);
 
                 CodesAdapter.Fill(table);
-
-                CloseConnection();
             }
+
+            CloseConnection();
 
             return table;
         }
@@ -91,14 +95,28 @@ namespace CodesADONet
         {
             var table = new DataTable();
 
+            string sql = "SELECT " +
+                               "b_user.ID, " +
+                               "b_user. NAME, " +
+                               "b_user.LAST_NAME, " +
+                               "b_user.SECOND_NAME, " +
+                               "b_user.EMAIL, " +
+                               "b_user.LOGIN, " +
+                               "b_user.PERSONAL_PHONE, " +
+                               "b_uts_user.UF_CARDNUMBER, " +
+                               "b_uts_user.UF_SKYPE " +
+                          "from b_user " +
+                          "LEFT JOIN b_uts_user on b_uts_user.VALUE_ID = b_user.ID " +
+                          "WHERE(b_uts_user.UF_CARDNUMBER is not NULL) AND(b_uts_user.UF_CARDNUMBER != 'empty')";
+
             if (OpenConnection())
             {
-                var CodesAdapter = new MySqlDataAdapter("Select * From b_blog_post", connection);
+                var CodesAdapter = new MySqlDataAdapter(sql, connection);
 
                 CodesAdapter.Fill(table);
-
-                CloseConnection();
             }
+
+            CloseConnection();
 
             return table;
         }

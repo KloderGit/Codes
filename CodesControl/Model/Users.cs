@@ -14,7 +14,7 @@ namespace CodesControl.Model
         private string parentName;
         private string email;
         private string login;
-        private string educationType;
+        //private string educationType;
         private string phone;
         private string code;
         private string skype;
@@ -85,15 +85,15 @@ namespace CodesControl.Model
             }
         }
 
-        public string EducationType
-        {
-            get { return this.educationType; }
-            set
-            {
-                objectChanged(new Secondary.ModelEventArgs(this.educationType));
-                this.educationType = value;
-            }
-        }
+        //public string EducationType
+        //{
+        //    get { return this.educationType; }
+        //    set
+        //    {
+        //        objectChanged(new Secondary.ModelEventArgs(this.educationType));
+        //        this.educationType = value;
+        //    }
+        //}
 
         public string Phone
         {
@@ -156,7 +156,7 @@ namespace CodesControl.Model
         {
             Action hasChanged = OnHasBuckupChanged;
             if (hasChanged != null) { hasChanged(); }
-            Console.WriteLine(" Изменено наличие бекапа в объекте Пользователь c ID - " + this.HasChanged);
+           // Console.WriteLine(" Изменено наличие бекапа в объекте Пользователь c ID - " + this.HasChanged);
         }
     }
 }
