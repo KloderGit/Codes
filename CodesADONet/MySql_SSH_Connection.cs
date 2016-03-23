@@ -8,26 +8,27 @@ namespace CodesADONet
     public class MySql_SSH_Connection
     {
         // Setup Credentials and Server Information
-        ConnectionInfo ConnNfo = new ConnectionInfo("u432805.ssh.masterhost.ru", 22, "u432805", new AuthenticationMethod[]{ new PasswordAuthenticationMethod("u432805", "re2tionoush") });
-        MySql_Connection mysql;
+        ConnectionInfo connectionInfoSSH = new ConnectionInfo("u432805.ssh.masterhost.ru", 22, "u432805", new AuthenticationMethod[]{ new PasswordAuthenticationMethod("u432805", "re2tionoush") });
+
+        // MySql_Native_Connection mysql;
 
         delegate DataTable submitAction();
 
         public MySql_SSH_Connection()
         {
-            mysql = new MySql_Connection("127.0.0.1", "u432805", "s-2Vi-oUs5yl", "u432805", "3306");
+           // mysql = new MySql_Native_Connection("127.0.0.1", "u432805", "s-2Vi-oUs5yl", "u432805", "3306");
         }
 
 
         public DataTable GetCodes()
         {
-            submitAction getCodeFunction = mysql.GetCodes;
+            submitAction getCodeFunction = new MySql_Native_Connection("127.0.0.1", "u432805", "s-2Vi-oUs5yl", "u432805", "3306").GetCodes;
             return ExecuteMysql(getCodeFunction);
         }
 
         public DataTable GetUsers()
         {
-            submitAction getUserFunction = mysql.GetUser;
+            submitAction getUserFunction = new MySql_Native_Connection("127.0.0.1", "u432805", "s-2Vi-oUs5yl", "u432805", "3306").GetUser;
             return ExecuteMysql(getUserFunction);
         }
 
@@ -36,7 +37,7 @@ namespace CodesADONet
         {
             DataTable table = new DataTable();
 
-            using (var sshclient = new SshClient(ConnNfo))
+            using (var sshclient = new SshClient(connectionInfoSSH))
             {
 
                 try
