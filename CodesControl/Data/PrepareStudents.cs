@@ -18,6 +18,7 @@ namespace CodesControl.Data
         {
             codesTable = connection.GetCodes();
             userTable = connection.GetUsers();
+            connection = null;
         }
 
         private List<Model.Codes> codesList()
@@ -40,7 +41,12 @@ namespace CodesControl.Data
                 }
                 catch (Exception e)
                 {
+
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine(row[5].ToString());
                     cod.ExpirationDate = DateTime.MinValue;
+                    Console.WriteLine(cod.ExpirationDate);
+
                 }
 
                 cod.Restore();

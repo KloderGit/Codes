@@ -44,8 +44,8 @@
 
         <Border Grid.Column="1" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Image Source="..\images\find-icon.png" Width="25" Height="25"/>
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="25" Text="{Binding StringForFilterCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" FontSize="16" Margin="15,0,0,0"/>
+                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="25" Text="{Binding StringForFilterCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" FontSize="16" Margin="0,0,10,0"/>
+                <Image Source="..\images\Search-Find.png" Width="40" Height="40"/>
             </StackPanel>
         </Border>
 

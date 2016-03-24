@@ -109,7 +109,15 @@ namespace CodesControl.ViewModel
 
             if (!String.IsNullOrEmpty(this.filterCollection))
             {
-                i1 = (item.UserName + item.UserLastName + item.UserParentName + item.Code).ToUpper().Replace(" ", String.Empty);
+                i1 = item.UserLastName +
+                    item.UserName +
+                    item.UserParentName +
+                    item.UserLastName +
+                    item.UserParentName +
+                    item.UserName +
+                    item.UserLastName +
+                    item.Code;
+                i1 = i1.ToUpper().Replace(" ", String.Empty);
                 i2 = (this.filterCollection.ToUpper()).Replace(" ", String.Empty);
 
                 if ( !i1.Contains(i2) ) { stringCorrect = false; }

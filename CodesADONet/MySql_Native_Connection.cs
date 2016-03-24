@@ -6,7 +6,7 @@ namespace CodesADONet
 {
     public class MySql_Native_Connection
     {
-        private MySqlConnection connection;
+        //private MySqlConnection connection;
         private string server;
         private string database;
         private string uid;
@@ -23,12 +23,8 @@ namespace CodesADONet
             port = _port;
 
             connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";" + "PORT=" + _port + ";" + "Allow Zero Datetime=true;";
-
-      //      connection = new MySqlConnection(connectionString);
         }
 
-
-        //open connection to database
         public bool OpenConnection(MySqlConnection connection)
         {
             try
@@ -57,7 +53,6 @@ namespace CodesADONet
             }
         }
 
-        //Close connection
         public bool CloseConnection(MySqlConnection connection)
         {
             try
