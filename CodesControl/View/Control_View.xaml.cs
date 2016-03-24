@@ -13,5 +13,15 @@ namespace CodesControl.View
         {
             InitializeComponent();
         }
+
+        private void AviableItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchField.Focus();
+        }
+
+        private void CodesTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchField.Focus();
+        }
     }
 }

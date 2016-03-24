@@ -61,9 +61,10 @@
     </Compile>
     <Compile Include="Data\PrepareStudents.cs" />
     <Compile Include="Model\Codes.cs" />
-    <Compile Include="Model\EducationType.cs" />
+    <Compile Include="Secondary\EducationType.cs" />
     <Compile Include="Model\Users.cs" />
     <Compile Include="Secondary\ModelEventArgs.cs" />
+    <Compile Include="Secondary\TypeConverter.cs" />
     <Compile Include="SomeData.cs" />
     <Compile Include="ViewModel\Control_ViewModel.cs" />
     <Compile Include="ViewModel\Student_ViewModel.cs" />
