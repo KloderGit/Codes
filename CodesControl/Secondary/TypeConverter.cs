@@ -29,7 +29,7 @@ namespace CodesControl.Secondary
                 case "S": str = "Студент"; break;
                 case "Z": str = "Заочник"; break;
                 case "V": str = "Выпускник"; break;
-                default: str = "Не определено"; break;
+                default: str = "Все статусы"; break;
             }
 
             return str;

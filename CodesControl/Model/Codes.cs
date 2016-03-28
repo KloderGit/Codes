@@ -33,8 +33,8 @@ namespace CodesControl.Model
             get { return this.code; }
             set
             {
-                this.code = value;
                 ObjectChanged(new Secondary.ModelEventArgs(this.code));
+                this.code = value;
             }
         }
 
@@ -43,8 +43,8 @@ namespace CodesControl.Model
             get { return this.active; }
             set
             {
-                this.active = value;
                 ObjectChanged(new Secondary.ModelEventArgs(this.active));
+                this.active = value;
             }
         }
 
@@ -53,8 +53,8 @@ namespace CodesControl.Model
             get { return this.userId; }
             set
             {
-                this.userId = value;
                 ObjectChanged(new Secondary.ModelEventArgs(this.userId));
+                this.userId = value;
             }
         }
 
@@ -63,8 +63,8 @@ namespace CodesControl.Model
             get { return this.educationType; }
             set
             {
-                this.educationType = value;
                 ObjectChanged(new Secondary.ModelEventArgs(this.educationType));
+                this.educationType = value;
             }
         }
 
@@ -73,8 +73,8 @@ namespace CodesControl.Model
             get { return this.expirationDate; }
             set
             {
-                this.expirationDate = value;
                 ObjectChanged(new Secondary.ModelEventArgs(this.expirationDate));
+                this.expirationDate = value;
             }
         }
 
@@ -92,11 +92,9 @@ namespace CodesControl.Model
             HasBuckupChanged();
         }
 
-        public void Restore()
+        public Codes GetBuckup
         {
-            Console.WriteLine("  Здесь должно быть востановление  ");
-            this.buckupCodeValue = null;
-            HasBuckupChanged();
+            get { return this.buckupCodeValue; }
         }
 
         private void ObjectChanged(Secondary.ModelEventArgs e)

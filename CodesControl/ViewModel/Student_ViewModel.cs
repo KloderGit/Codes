@@ -119,7 +119,9 @@ namespace CodesControl.ViewModel
 
         private void RestoreData()
         {
-            code.Restore();
+            code = code.GetBuckup;
+            code.DelBackup();
+            OnPropertyChanged("CodeExpirationDate");
         }
 
 
