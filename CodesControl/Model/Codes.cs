@@ -86,8 +86,15 @@ namespace CodesControl.Model
             return this.MemberwiseClone();
         }
 
+        public void DelBackup()
+        {
+            this.buckupCodeValue = null;
+            HasBuckupChanged();
+        }
+
         public void Restore()
         {
+            Console.WriteLine("  Здесь должно быть востановление  ");
             this.buckupCodeValue = null;
             HasBuckupChanged();
         }

@@ -52,7 +52,7 @@ namespace CodesControl.Data
 
                 }
 
-                cod.Restore();
+                cod.DelBackup();
 
                 codes.Add(cod);
             }

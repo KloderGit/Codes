@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Data;
 using System.ComponentModel;
-using System.Collections.Specialized;
-using CodesADONet;
 using System.Data;
 
 namespace CodesControl.ViewModel

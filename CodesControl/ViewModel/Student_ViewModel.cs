@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodesControl.Model;
+using System.Windows.Input;
 
 namespace CodesControl.ViewModel
 {
@@ -68,10 +69,6 @@ namespace CodesControl.ViewModel
                 if (value != code.ExpirationDate)
                 {
                     code.ExpirationDate = value;
-
-                    new Data.UpdateCode(code);
-                    code.Restore();
-
                     OnPropertyChanged("CodeExpirationDate");
                 }
             }
@@ -101,6 +98,54 @@ namespace CodesControl.ViewModel
         {
             Action hasBuckup = this.OnHasBuckup;
             if (hasBuckup != null) { hasBuckup(); }
+        }
+
+
+        //    Команды
+
+        private Command.RelayCommand Restore;
+
+        public ICommand RestoreStudent
+        {
+            get
+            {
+                if (Restore == null)
+                {
+                    Restore = new Command.RelayCommand(RestoreData, CanExecute);
+                }
+                return Restore;
+            }
+        }
+
+        private void RestoreData()
+        {
+            code.Restore();
+        }
+
+
+        private Command.RelayCommand Update;
+
+        public ICommand UpdateStudent
+        {
+            get
+            {
+                if (Update == null)
+                {
+                    Update = new Command.RelayCommand(UpdateData, CanExecute);
+                }
+                return Update;
+            }
+        }
+
+        private void UpdateData()
+        {
+            new Data.UpdateCode(code);
+            code.DelBackup();
+        }
+
+        private bool CanExecute()
+        {
+            return this.HasBuckup;
         }
 
     }
