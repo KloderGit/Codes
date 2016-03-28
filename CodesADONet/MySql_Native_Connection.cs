@@ -13,6 +13,7 @@ namespace CodesADONet
         private string password;
         private string connectionString;
         private string port;
+        private MySqlConnection connection;
 
         public MySql_Native_Connection(string _server, string _user, string _pass, string _db, string _port)
         {
@@ -25,11 +26,11 @@ namespace CodesADONet
             connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";" + "PORT=" + _port + ";" + "Allow Zero Datetime=true;";
         }
 
-        public bool OpenConnection(MySqlConnection connection)
+        public bool OpenConnection()
         {
             try
             {
-                connection.Open();
+                this.connection.Open();
                  Console.WriteLine("MySQL - Соединение установлено!!!");
                 return true;
             }
@@ -53,11 +54,11 @@ namespace CodesADONet
             }
         }
 
-        public bool CloseConnection(MySqlConnection connection)
+        public bool CloseConnection()
         {
             try
             {
-                connection.Close();
+                this.connection.Close();
                 Console.WriteLine("MySQL - Соединение закрыто!!!");
                 return true;
             }
@@ -73,15 +74,18 @@ namespace CodesADONet
         {
             var table = new DataTable();
 
-            using (var connection = new MySqlConnection(connectionString))
+            using (connection = new MySqlConnection(connectionString))
             {
-                if (OpenConnection(connection))
+                if (OpenConnection())
                 {
-                    var CodesAdapter = new MySqlDataAdapter("Select id, code, status, user_id, type, exp_data From code_activation where user_id != 0", connection);
-
-                    CodesAdapter.Fill(table);
-
-                    CloseConnection(connection);
+                    using (var cmd = new MySqlCommand("Select id, code, status, user_id, type, exp_data From code_activation where user_id != 0", connection))
+                    {
+                        MySqlDataReader dr = cmd.ExecuteReader();
+                        table.Load(dr);
+                        dr.Close();
+                        Console.WriteLine("Коды - считаны");
+                    }
+                    CloseConnection();
                 }
             }
 
@@ -106,20 +110,43 @@ namespace CodesADONet
                           "LEFT JOIN b_uts_user on b_uts_user.VALUE_ID = b_user.ID " +
                           "WHERE(b_uts_user.UF_CARDNUMBER is not NULL) AND(b_uts_user.UF_CARDNUMBER != 'empty')";
 
-            using (var connection = new MySqlConnection(connectionString))
+
+            using (connection = new MySqlConnection(connectionString))
             {
-                if (OpenConnection(connection))
+                if (OpenConnection())
                 {
-                    var CodesAdapter = new MySqlDataAdapter(sql, connection);
+                    using (var cmd = new MySqlCommand(sql, connection))
+                    {
+                        MySqlDataReader dr = cmd.ExecuteReader();
+                        table.Load(dr);
+                        dr.Close();
+                        Console.WriteLine("Пользователи - считаны");
+                    }
 
-                    CodesAdapter.Fill(table);
-
-                    CloseConnection(connection);
+                    CloseConnection();
                 }
-
             }
 
             return table;
+        }
+
+
+
+        public void UpdateCode(int _id, DateTime _newDate)
+        {
+            var dat = _newDate.ToString("yyyy/M/d");
+
+            string sql = string.Format("Update code_activation Set exp_data = '{0}' where id = '{1}'", dat, _id);
+
+            if (OpenConnection())
+            {
+                using (var cmd = new MySqlCommand(sql, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine(" --- Обновление Кода --- ");
+                }
+                CloseConnection();
+            }
         }
     }
 }

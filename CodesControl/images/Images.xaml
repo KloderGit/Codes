@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CodesControl.images">
+
+    <SolidColorBrush x:Key="IconsBrush" Color="Gray" />
+
+    <GeometryGroup x:Key="SearchPath">
+        <PathGeometry Figures="M12.833076,4.5889625C9.0420458,4.5889625 5.7500408,7.1819653 5.3510525,10.673919 4.9520643,14.364907 7.9450567,17.756886 12.134098,18.055895 16.324117,18.45488 20.015109,15.760895 20.414098,11.970939 20.813148,8.2799505 17.821132,4.8879718 13.631113,4.5889625z M12.733099,5.7343641E-10C13.132088,-2.0158268E-07 13.631113,-2.0158268E-07 14.030102,0.10000526 21.013099,0.6979938 26.100154,6.2849674 25.402154,12.568927 25.103141,14.763922 24.205129,16.758906 22.808151,18.45488L31.288163,27.53283C32.385152,28.629839 32.18514,30.425818 30.889175,31.322817 29.592172,32.320795 27.69617,32.120818 26.599118,31.023808L18.020107,21.746853C16.025104,22.544852 13.830089,22.943867 11.436097,22.743857 4.4530389,22.145869 -0.63395572,16.559901 0.064045019,10.274934 0.76204573,4.3889822 6.3490422,-2.0158268E-07 12.733099,5.7343641E-10z" />
+    </GeometryGroup>
+
+    <GeometryGroup x:Key="UserIconPath">
+        <PathGeometry Figures="M24,0A24,24,0,1,0,48,24,24,24,0,0,0,24,0Zm0,1A22.93,22.93,0,0,1,41.45,38.88c-2.25-2.74-7-5.18-11.35-6.67-0.27-.09-2-0.89-0.92-4.26h0a19.06,19.06,0,0,0,4.95-12.47c0-7.24-4.68-11-10.12-11s-10.09,3.8-10.09,11a19,19,0,0,0,5,12.5c1.1,3-.87,4.07-1.28,4.23-4.14,1.54-8.78,4-11,6.69A22.93,22.93,0,0,1,24,1Z" />
+    </GeometryGroup>
+
+    <DrawingImage x:Key="SearchIconImage">
+            <DrawingImage.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{StaticResource IconsBrush}" Geometry="{StaticResource SearchPath}"/>
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="UserIconImage">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{StaticResource IconsBrush}" Geometry="{StaticResource UserIconPath}"/>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingBrush x:Key="UserIconBrush" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{StaticResource IconsBrush}" Geometry="{StaticResource UserIconPath}"/>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+
+</ResourceDictionary>

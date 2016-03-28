@@ -10,7 +10,7 @@ namespace CodesControl.Data
 {
     public class PrepareStudents
     {
-        MySql_SSH_Connection connection = new MySql_SSH_Connection();
+        MySql_SSH_Connection connection = MySql_SSH_Connection.SshConnection;
         DataTable codesTable = new DataTable();
         DataTable userTable = new DataTable();
 
@@ -18,7 +18,10 @@ namespace CodesControl.Data
         {
             codesTable = connection.GetCodes();
             userTable = connection.GetUsers();
+            connection.UpdateCode(9243, DateTime.Now);
+
             connection = null;
+
         }
 
         private List<Model.Codes> codesList()

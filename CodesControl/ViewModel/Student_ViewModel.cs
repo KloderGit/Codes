@@ -68,6 +68,10 @@ namespace CodesControl.ViewModel
                 if (value != code.ExpirationDate)
                 {
                     code.ExpirationDate = value;
+
+                    new Data.UpdateCode(code);
+                    code.Restore();
+
                     OnPropertyChanged("CodeExpirationDate");
                 }
             }

@@ -60,6 +60,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\PrepareStudents.cs" />
+    <Compile Include="Data\UpdateCode.cs" />
     <Compile Include="Model\Codes.cs" />
     <Compile Include="Secondary\EducationType.cs" />
     <Compile Include="Model\Users.cs" />
@@ -104,6 +105,10 @@
     <Folder Include="Command\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="images\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Control_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

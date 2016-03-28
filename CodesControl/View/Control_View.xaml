@@ -9,6 +9,7 @@
     <UserControl.Resources>
         <second:TypeConverter x:Key="EducationTypeConverter"/>
     </UserControl.Resources>
+    
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -49,7 +50,7 @@
         <Border Grid.Column="1" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                 <TextBox x:Name="searchField" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="25" Text="{Binding StringForFilterCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0" FontSize="16" Margin="0,0,6,0"/>
-                <Image Source="..\images\Search-Find.png" Width="35" Height="35"/>
+                <Image Source="{StaticResource SearchIconImage}" Width="20" Height="20" Margin="3,0,0,0" />
             </StackPanel>
         </Border>
 
@@ -63,8 +64,7 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Grid Margin="0,0,12,0">
-                                    <Image Source="..\images\User-mini.png" Width="42" Height="42" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    <Ellipse Width="35" Height="35" Fill="{x:Null}" Stroke="#FF595959" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <Image Source="{StaticResource UserIconImage}" Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
 
                                 <StackPanel>
@@ -84,7 +84,6 @@
                                         <TextBlock Text="Срок:" />
                                         <TextBlock Text="{Binding CodeExpirationDate, StringFormat=dd MMMM yyyy}" Margin="10,0,0,0"/>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding HasBuckup}" />
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
@@ -105,11 +104,8 @@
                         <StackPanel Orientation="Horizontal"
                                             Margin="0,0,0,30">
                             <Grid>
-                                <Image Source="..\images\User-mini.png" HorizontalAlignment="Center" Width="65" Height="65"/>
-                                <Ellipse Width="50" 
-                                             Height="50" 
-                                             Stroke="#FF595959" 
-                                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Image Source="{StaticResource UserIconImage}" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,0,10,0"/>
+
                             </Grid>
 
                             <StackPanel Orientation="Horizontal" 
@@ -151,7 +147,7 @@
                             <TextBlock Grid.Column="1" Text="{Binding UserEmail, Mode=OneWay}"             
                         			TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center" />
 
-                            <TextBlock Text="Login:" Margin="0" FontSize="16" Grid.Row="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="Login:" Margin="0" FontSize="16" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                             <TextBlock Text="{Binding UserLogin, Mode=OneWay}"
                                        Grid.Column="1"
                                        Grid.Row="1"
@@ -187,6 +183,7 @@
                         			HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="0"/>
 
                         </Grid>
+                        <Path Data="M 55.5256,121.723C 50.4949,116.58 45.314,112.15 39.8703,108.396C 30.2218,96.7574 22.4505,88.1977 16.4812,82.6414C 12.9147,79.3752 9.53584,77.9861 6.38225,78.4366C 2.13993,79.0373 -0.375427,81.9656 0,86.2831C 0.488055,91.6516 12.9898,108.283 17.1195,111.812C 23.314,118.72 28.0819,124.426 31.4232,128.819C 42.1604,140.007 50.7577,147.59 57.215,151.495C 59.9556,154.761 62.5085,158.515 64.8737,162.757C 67.4642,169.478 75.7986,178.112 80.1161,185.621C 86.686,197.071 91.041,207.959 104.068,222.338C 108.423,227.181 111.577,230.297 114.693,233.863C 122.614,242.949 135.341,256.051 141.386,265.662C 144.014,269.792 149.57,280.003 151.56,284.396C 181.256,276.437 207.048,261.382 228.898,240.508C 226.908,237.43 224.881,234.314 222.891,231.198C 213.655,218.508 207.386,205.143 204.044,191.177C 197.625,232.85 127.683,228.119 126.218,169.815C 139.809,228.607 194.021,222.638 202.092,187.348C 203.106,182.805 202.242,175.71 200.328,170.454C 194.058,153.034 195.447,146.577 191.13,131.297C 188.276,121.198 183.959,115.153 178.177,113.276C 174.461,112.187 170.894,111.061 167.44,109.897C 157.229,106.481 148.031,102.764 139.884,98.7472C 132.788,94.6175 125.918,92.2148 119.311,91.5765C 113.003,91.8393 107.034,92.44 101.44,93.3786C 93.8942,94.6175 86.7986,94.242 81.0171,95.2557C 76.3618,96.0816 73.3959,98.5595 72.157,102.727C 71.0307,107.269 71.8567,110.986 74.7474,113.727C 81.843,120.522 99.9386,125.928 112.741,127.355C 118.86,128.068 122.915,127.73 129.222,129.42C 138.683,131.972 146.266,136.665 151.935,143.46C 153.925,146.839 153.85,148.867 151.635,149.505C 147.092,150.819 146.679,148.228 144.389,145.375C 141.311,141.471 138.495,138.843 134.253,136.665C 141.048,146.464 124.867,161.669 109.925,151.307C 104.631,147.365 99.0751,142.785 93.5939,138.242C 86.0102,131.972 77.8635,124.276 70.3925,118.457C 74.5973,121.723 78.5393,124.577 82.256,127.054C 87.6997,130.658 91.9795,133.699 97.2355,137.641C 100.765,140.344 104.932,143.423 109.737,146.877C 115.744,151.269 121.751,151.307 127.72,146.952C 131.549,143.385 132.038,139.181 129.184,134.413C 128.246,134.075 127.307,133.775 126.331,133.512C 115.106,130.508 105.945,131.86 92.7679,127.317C 89.5017,126.191 86.3106,124.877 83.3072,123.3C 77.6007,120.334 72.57,117.293 69.7167,112.338C 67.1263,107.832 67.7645,101.713 72.3072,96.5697C 73.9591,94.655 76.7372,93.266 80.4164,92.6277C 86.9113,91.5014 92.8806,91.9519 100.952,90.4878C 105.232,89.6994 109.7,89.1738 114.092,89.0237C 112.027,83.9178 109.925,79.7881 107.672,76.9349C 103.618,72.2045 98.1365,68.4878 91.7167,69.0134C 87.4744,69.3513 83.9079,71.3786 80.9795,75.1328C 77.3003,79.638 77,84.9315 80.1536,90.9759C 73.8464,88.6107 69.0034,89.0237 65.587,92.2148C 61.7201,95.2932 59.8806,99.5731 60.0307,105.092C 60.6689,110.235 63.785,115.529 69.4915,120.935C 72.57,123.826 74.2219,126.266 74.4471,128.331C 74.2219,130.283 73.4335,131.334 72.1945,131.522C 67.6519,130.809 62.0956,127.542 55.5256,121.723 Z M 94.4573,57.1875C 96.7474,60.7915 99.8635,63.6823 103.13,66.8359C 110.863,74.2694 116.345,81.5526 118.635,88.9861C 119.611,89.0237 120.587,89.0612 121.526,89.1363C 125.543,89.4366 134.215,92.6277 144.877,97.9963C 149.082,100.136 157.416,103.252 165.038,106.143C 153.437,88.5356 139.471,75.3957 126.969,58.5765C 121.901,49.8666 115.894,42.0578 108.949,35.225C 104.068,31.1704 96.8976,23.9622 87.4369,13.5629C 78.5017,2.71304 70.9181,-1.67944 64.6109,0.272766C 60.744,1.47412 59.0171,3.76422 58.942,7.81885C 58.7918,12.9247 62.3208,18.4434 69.4915,24.4503C 73.2082,27.8291 77.2628,32.2967 81.7304,37.8155C 87.8498,45.3991 89.7645,49.9041 94.4573,57.1875 Z " Height="146.508" Stretch="Fill" Width="195"/>
                     </StackPanel>
                 </DataTemplate>
             </ContentControl.ContentTemplate>
