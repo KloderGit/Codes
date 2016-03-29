@@ -19,7 +19,9 @@ namespace CodesADONet
         {
            mysql = new MySql_Native_Connection("127.0.0.1", "u432805", "s-2Vi-oUs5yl", "u432805", "3306");
            sshclient = new SshClient(connectionInfoSSH);
+
             sshclient.Connect();
+            sshclient.KeepAliveInterval = new TimeSpan(0, 0, 59);
             Console.WriteLine("SSH установлено");
             tunnel = new ForwardedPortLocal("127.0.0.1", 3306, "u432805.mysql.masterhost.ru", 3306);
             sshclient.AddForwardedPort(tunnel);

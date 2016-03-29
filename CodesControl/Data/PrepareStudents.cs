@@ -18,10 +18,7 @@ namespace CodesControl.Data
         {
             codesTable = connection.GetCodes();
             userTable = connection.GetUsers();
-            connection.UpdateCode(9243, DateTime.Now);
-
             connection = null;
-
         }
 
         private List<Model.Codes> codesList()

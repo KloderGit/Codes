@@ -143,7 +143,7 @@ namespace CodesADONet
                 using (var cmd = new MySqlCommand(sql, connection))
                 {
                     cmd.ExecuteNonQuery();
-                    Console.WriteLine(" --- Обновление Кода --- ");
+                    Console.WriteLine(" --- Обновление Кода --- " + _id);
                 }
                 CloseConnection();
             }

@@ -6,8 +6,24 @@
         xmlns:local="clr-namespace:CodesUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1150" >
-    <Grid x:Name="Root">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="321"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
 
+        <Grid x:Name="Root" Grid.Row="2" Grid.ColumnSpan="2">
+
+        </Grid>
+
+        <Border Background="#FF42A48E">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Коды пользователей" VerticalAlignment="Bottom" Padding="15,0,0,5" Foreground="White" FontSize="21.333" FontWeight="Light"/>
+        </Border>
+        <Border Grid.Column="1" Background="#FFC2E4DC"/>
     </Grid>
 </Window>
